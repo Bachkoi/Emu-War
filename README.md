@@ -12,6 +12,7 @@ Samuel Beckmann
 Kyle James
 Ryan Cooper
 Jan Sonmezer
+Silver Hao
 
 
 Team Documentation: https://docs.google.com/document/d/1BLAmNsgIMrcelIfk5B5oVkCBS4nR8Q7Bxbb0GExTBvw/edit?usp=sharing
