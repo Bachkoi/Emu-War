@@ -6,9 +6,15 @@ public class Player : MonoBehaviour
 {
     #region Fields
     public float speed;
+    Animator anim;
     #endregion
 
     #region Methods
+    void Start()
+    {
+        anim = GetComponent<Animator>();
+    }
+
     /// <summary>
     /// Called once per frame; updates the Player object.
     /// </summary>
@@ -31,12 +37,18 @@ public class Player : MonoBehaviour
 
         // Check if the mouse is inside the player
         bool mouseInsidePlayer = GetComponent<Collider2D>().bounds.Contains(targetPos);
-        
+
         // If it isn't, move the player
-        if(!mouseInsidePlayer)
+        if (!mouseInsidePlayer)
         {
+            anim.SetBool("isWalking", true);
+
             // Transform the Player object toward the target position
             transform.position = Vector2.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+        }
+        else
+        {
+            anim.SetBool("isWalking", false);
         }
     }
     #endregion
