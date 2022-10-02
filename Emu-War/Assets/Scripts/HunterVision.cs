@@ -6,7 +6,6 @@ public class HunterVision : MonoBehaviour
 {
     #region fields
     [SerializeField]
-    //private AIHunterTracking _hunterTracking;
     private GameObject _hunterAi;
     #endregion
     private void OnTriggerEnter2D(Collider2D collision)

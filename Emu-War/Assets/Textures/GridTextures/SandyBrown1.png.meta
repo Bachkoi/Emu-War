@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 148b117f56ad9e94999d6c5a345bee5c
+guid: 8a8f9433d3b13664297a493cb730a0b5
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -128,7 +128,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: RedRock1small_0
+      name: SandyBrown1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -142,14 +142,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3edd2fa6bbdd171499b9c1d6a8b2c5f0
-      internalID: -102688997
+      spriteID: 57e9887d75969714bbc716896e398eb3
+      internalID: -663967689
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RedRock1small_1
+      name: SandyBrown1_1
       rect:
         serializedVersion: 2
         x: 32
@@ -163,14 +163,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d35e9e331874534d95aaba08b6a717b
-      internalID: -1352772772
+      spriteID: bfc63953de8b1fa48a8364184ee1d30d
+      internalID: 1164440574
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RedRock1small_2
+      name: SandyBrown1_2
       rect:
         serializedVersion: 2
         x: 64
@@ -184,14 +184,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36cddeae57794e64797fa0438353d519
-      internalID: -1916567167
+      spriteID: ee4d66acf71e2c042b8bd3b6aad4817b
+      internalID: 87992337
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RedRock1small_3
+      name: SandyBrown1_3
       rect:
         serializedVersion: 2
         x: 0
@@ -205,14 +205,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 69fe8146c95f1a54ba25ff2585e162ea
-      internalID: 334008101
+      spriteID: fd170adf2217a434a836d2345982fb9d
+      internalID: -1124817698
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RedRock1small_4
+      name: SandyBrown1_4
       rect:
         serializedVersion: 2
         x: 32
@@ -226,14 +226,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 53fd9f57632c3634c965ed0e16b386d6
-      internalID: -791552390
+      spriteID: 20723bb9a23dec148a99eef293c495c4
+      internalID: 1344707777
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RedRock1small_5
+      name: SandyBrown1_5
       rect:
         serializedVersion: 2
         x: 64
@@ -247,14 +247,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b1d6705f41900cd4d88aff09c30be15b
-      internalID: -203197594
+      spriteID: 965907e5d9f5a9c4491259bb8205e67d
+      internalID: -1226617052
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RedRock1small_6
+      name: SandyBrown1_6
       rect:
         serializedVersion: 2
         x: 0
@@ -268,14 +268,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b8782ac33c1479e459fcce3b61335503
-      internalID: -737465565
+      spriteID: 74b73595bf642924bbfd2057264b8aea
+      internalID: 249942269
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RedRock1small_7
+      name: SandyBrown1_7
       rect:
         serializedVersion: 2
         x: 32
@@ -289,14 +289,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 912682f16d0e27e4ba9173d4d2200f92
-      internalID: 1328892673
+      spriteID: f80c7e5c25f29dc4abf15a5de2506619
+      internalID: -1017408107
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: RedRock1small_8
+      name: SandyBrown1_8
       rect:
         serializedVersion: 2
         x: 64
@@ -310,8 +310,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 023deace1a9e99341a35f9b499ee82e4
-      internalID: -926968923
+      spriteID: 297ec93da0950094b88fe6ee47b1ef4d
+      internalID: -49688933
       vertices: []
       indices: 
       edges: []
@@ -327,15 +327,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      RedRock1small_8: -926968923
-      RedRock1small_4: -791552390
-      RedRock1small_2: -1916567167
-      RedRock1small_7: 1328892673
-      RedRock1small_1: -1352772772
-      RedRock1small_5: -203197594
-      RedRock1small_6: -737465565
-      RedRock1small_3: 334008101
-      RedRock1small_0: -102688997
+      SandyBrown1_7: -1017408107
+      SandyBrown1_4: 1344707777
+      SandyBrown1_0: -663967689
+      SandyBrown1_5: -1226617052
+      SandyBrown1_3: -1124817698
+      SandyBrown1_6: 249942269
+      SandyBrown1_2: 87992337
+      SandyBrown1_8: -49688933
+      SandyBrown1_1: 1164440574
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
