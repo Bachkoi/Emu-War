@@ -10420,7 +10420,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1010265604}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.486952, y: -0.094361916, z: 0}
+  m_LocalPosition: {x: -2.11, y: -2.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10440,7 +10440,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1bc061511ea580408d05748a215b8de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inSight: 0
+  inSight: 0
+  _spots:
+  - {x: 0, y: 0, z: 0}
+  - {x: 4, y: 4, z: 0}
+  - {x: 1, y: -2, z: 0}
+  _randomSpotOdds: 0
+  hunterSpeed: 2
 --- !u!4 &1270770061 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8065432941162202326, guid: 50f3a488a1b5ce64b9b1678b89710951, type: 3}
