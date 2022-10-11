@@ -48,7 +48,8 @@ public class Player : MonoBehaviour
     private void FollowMouse()
     {
         // Get the target position
-        Vector2 targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        targetPos.z = -1;
 
         // Check if the mouse is inside the player
         bool mouseInsidePlayer = GetComponent<Collider2D>().bounds.Contains(targetPos);
@@ -59,7 +60,7 @@ public class Player : MonoBehaviour
             _anim.SetBool("isWalking", true);
 
             // Transform the Player object toward the target position
-            transform.position = Vector2.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
         }
         else
         {

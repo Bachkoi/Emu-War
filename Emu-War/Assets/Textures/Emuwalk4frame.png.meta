@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cfe8b830c2b99d34ba82fbddc0c5143c
+guid: 52f6cccc79beb8041b02cf086de302a0
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -116,43 +116,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Emunuel_1
+      name: Emuwalk4frame_0
       rect:
         serializedVersion: 2
         x: 155
-        y: 45
+        y: 50
         width: 155
-        height: 410
+        height: 395
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 52c0373d98fadc443b8c1259fe24169c
-      internalID: -1040967344
+      spriteID: 4539614f27bfb914c8cdab18d7e03694
+      internalID: -1189919497
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Emunuel_2
+      name: Emuwalk4frame_1
       rect:
         serializedVersion: 2
         x: 635
-        y: 60
+        y: 75
         width: 155
-        height: 390
+        height: 375
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 014a72e315ad8ee49b90646c159782b9
-      internalID: 966140789
+      spriteID: f918b7043db7a1742a04d621983b4e59
+      internalID: -1821020429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Emuwalk4frame_2
+      rect:
+        serializedVersion: 2
+        x: 1115
+        y: 85
+        width: 155
+        height: 340
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7578ab11a1183984a9cf3ea6cb4a3364
+      internalID: 1739912647
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Emuwalk4frame_3
+      rect:
+        serializedVersion: 2
+        x: 1595
+        y: 55
+        width: 155
+        height: 375
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7fa43349c483d14a8925988b2fe6ead
+      internalID: -994662786
       vertices: []
       indices: 
       edges: []
@@ -168,8 +210,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Emunuel_2: 966140789
-      Emunuel_1: -1040967344
+      Emuwalk4frame_0: -1189919497
+      Emuwalk4frame_2: 1739912647
+      Emuwalk4frame_3: -994662786
+      Emuwalk4frame_1: -1821020429
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
