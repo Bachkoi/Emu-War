@@ -33,6 +33,7 @@ public class ObjectPooler : MonoBehaviour
     void Start()
     {
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
+        //Fills dicitonary with pool references.
         foreach (Pool pool in pools)
         {
             Queue<GameObject> objectPool = new Queue<GameObject>();
@@ -46,6 +47,7 @@ public class ObjectPooler : MonoBehaviour
         }
     }
 
+    //Gets reference to the pool to pull from and set it active
     public GameObject SpawnFromPool(string tag, Vector3 pos, Quaternion quat)
     {
         if (!poolDictionary.ContainsKey(tag))

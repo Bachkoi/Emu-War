@@ -44,34 +44,20 @@ public class AIHunterTracking : MonoBehaviour
     void Update()
     {
         OnSight();
-
-
     }
 
     public void OnSight()
     {
+        //If Emu is in sight, shoot, otherwise patrol
         if (inSight)
         {
-            gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+            //gameObject.GetComponent<SpriteRenderer>().color = Color.red;
             gameObject.GetComponent<AIHunterShooting>().canFire = true;
         }
         else
         {
             Patrol();
             gameObject.GetComponent<AIHunterShooting>().canFire = false;
-        }
-    }
-
-    public void CheckDistance()
-    {
-        //If close enough to the current waypoint, pick a new wavepoint and rotate towards it
-        if(Vector2.Distance(transform.position,_currentNode) <= 0.2f)
-        {
-            _currentNode = _hotpoints.Dequeue();
-            Debug.Log(_currentNode);
-            _hotpoints.Enqueue(_currentNode);
-            _rotateToPoint = true;
-            //_rotatePoint = (_currentNode - transform.position).normalized;
         }
     }
 
@@ -83,15 +69,8 @@ public class AIHunterTracking : MonoBehaviour
         {
             _rotateTimer++;
 
-            Vector3 targetOfRotation = _currentNode - transform.position;
-            float angle = Mathf.Atan2(targetOfRotation.y, targetOfRotation.x) * Mathf.Rad2Deg;
-            Quaternion rotationQuaternion = Quaternion.AngleAxis(angle, Vector3.forward);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotationQuaternion, _rotationSpeed * Time.deltaTime);
-
             //logic for later STILL IN PROGRESS
-            float dot = Vector2.Dot( (targetOfRotation).normalized, this.transform.forward);
-            Debug.Log(dot);
-
+            float DotProduct = RotateHunter();
             if (_rotateTimer >= 360)
             {
                 _rotateToPoint = false;
@@ -108,9 +87,29 @@ public class AIHunterTracking : MonoBehaviour
 
     }
 
-    public void ShootAtTarget()
+    //Checks current distance to waypoint. If close enough, move to rotating.
+    public void CheckDistance()
     {
-        
-
+        //If close enough to the current waypoint, pick a new wavepoint and rotate towards it
+        if(Vector2.Distance(transform.position,_currentNode) <= 0.2f)
+        {
+            _currentNode = _hotpoints.Dequeue();
+            Debug.Log(_currentNode);
+            _hotpoints.Enqueue(_currentNode);
+            _rotateToPoint = true;
+            //_rotatePoint = (_currentNode - transform.position).normalized;
+        }
     }
+
+    //Rotate player towards waypoint
+    public float RotateHunter()
+    {
+        Vector3 targetOfRotation = _currentNode - transform.position;
+        float angle = Mathf.Atan2(targetOfRotation.y, targetOfRotation.x) * Mathf.Rad2Deg;
+        Quaternion rotationQuaternion = Quaternion.AngleAxis(angle, Vector3.forward);
+        transform.rotation = Quaternion.Slerp(transform.rotation, rotationQuaternion, _rotationSpeed * Time.deltaTime);
+        float dot = Vector2.Dot((targetOfRotation).normalized, this.transform.forward);
+        return dot;
+    }
+
 }

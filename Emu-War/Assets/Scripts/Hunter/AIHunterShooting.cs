@@ -21,6 +21,7 @@ public class AIHunterShooting : MonoBehaviour
 
     private void Start()
     {
+        //Calling object pooler for bullets
         _objPool = ObjectPooler.Instance;
         canFire = false;
         _burstCounter = 5;
@@ -37,10 +38,13 @@ public class AIHunterShooting : MonoBehaviour
 
     private void FireGun()
     {
+        //If the rate of fire is done
         if (_counter > _rateOfFire)
         {
+            //If there are still bursts shots left
             if(_burstCounter > 0)
             {
+                //Cooldown for burst
                 if(_burstCooldown <= 0)
                 {
                     GameObject bullet = _objPool.SpawnFromPool("Bullet", transform.position, transform.rotation);
