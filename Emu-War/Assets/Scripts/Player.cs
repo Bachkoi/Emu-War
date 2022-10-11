@@ -1,17 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
     #region Fields
+    public int health;
+    public int wheat;
+    public int hoardSize;
     public float speed;
-    Animator anim;
+    private Animator anim;
+    [SerializeReference] private TextMeshProUGUI healthText;
+    [SerializeReference] private TextMeshProUGUI wheatText;
+    [SerializeReference] private TextMeshProUGUI hoardSizeText;
     #endregion
 
     #region Methods
+    /// <summary>
+    /// Initialize Player Fields.
+    /// </summary>
     void Start()
     {
+        health = 100;
+        wheat = 0;
+        hoardSize = 0;
         anim = GetComponent<Animator>();
     }
 
@@ -22,6 +35,10 @@ public class Player : MonoBehaviour
     {
         // Movement
         FollowMouse();
+
+        healthText.text = $"Health: {health}";
+        wheatText.text = $"Wheat: {wheat}";
+        hoardSizeText.text = $"Hoard Size: {hoardSize}";
     }
 
     /// <summary>
