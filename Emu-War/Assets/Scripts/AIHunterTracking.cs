@@ -52,18 +52,19 @@ public class AIHunterTracking : MonoBehaviour
     {
         if (inSight)
         {
-            ShootAtTarget();
-
+            gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+            gameObject.GetComponent<AIHunterShooting>().canFire = true;
         }
         else
         {
             Patrol();
-
+            gameObject.GetComponent<AIHunterShooting>().canFire = false;
         }
     }
 
     public void CheckDistance()
     {
+        //If close enough to the current waypoint, pick a new wavepoint and rotate towards it
         if(Vector2.Distance(transform.position,_currentNode) <= 0.2f)
         {
             _currentNode = _hotpoints.Dequeue();
@@ -80,19 +81,17 @@ public class AIHunterTracking : MonoBehaviour
 
         if (_rotateToPoint)
         {
-            //transform.right += (_currentNode -transform.position).normalized;
-            //Quaternion rotateTo = Quaternion.LookRotation(Vector3.forward, (_currentNode - transform.position).normalized);
-            //transform.rotation = Quaternion.RotateTowards(transform.rotation, rotateTo, _rotationSpeed * Time.deltaTime);
             _rotateTimer++;
 
-            //Debug.Log("Right: " + transform.right + " Rotate Point: " + _rotatePoint + " Distance: " + Vector3.Distance(transform.right, _rotatePoint));
             Vector3 targetOfRotation = _currentNode - transform.position;
             float angle = Mathf.Atan2(targetOfRotation.y, targetOfRotation.x) * Mathf.Rad2Deg;
             Quaternion rotationQuaternion = Quaternion.AngleAxis(angle, Vector3.forward);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotationQuaternion, _rotationSpeed * Time.deltaTime);
 
+            //logic for later STILL IN PROGRESS
             float dot = Vector2.Dot( (targetOfRotation).normalized, this.transform.forward);
             Debug.Log(dot);
+
             if (_rotateTimer >= 360)
             {
                 _rotateToPoint = false;
@@ -100,12 +99,10 @@ public class AIHunterTracking : MonoBehaviour
                 //transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.x, transform.eulerAngles.z + 90);
             }
         }
+
         else
         {
             transform.position = Vector2.MoveTowards(transform.position, _currentNode, hunterSpeed * Time.deltaTime);
-
-            
-            //float angle = Mathf.Atan2(_)
             CheckDistance();
         }
 
@@ -113,6 +110,7 @@ public class AIHunterTracking : MonoBehaviour
 
     public void ShootAtTarget()
     {
-        gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+        
+
     }
 }
