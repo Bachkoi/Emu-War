@@ -28,7 +28,7 @@ public class Wheat : MonoBehaviour
         if (collision.gameObject.CompareTag("Emu"))
         {
             // Reduce wheat health based on number of Emus
-            health -= 1 + (collision.gameObject.GetComponent<Player>().hoardSize * 0.1f);
+            health -= 1 + (collision.gameObject.GetComponent<Player>().hordeSize * 0.1f);
 
             // If there's no remaining health
             if (health <= 0)

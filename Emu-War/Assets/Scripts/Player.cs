@@ -8,12 +8,12 @@ public class Player : MonoBehaviour
     #region Fields
     public int health;
     public int wheat;
-    public int hoardSize;
+    public int hordeSize;
     public float speed;
     private Animator _anim;
     [SerializeReference] private TextMeshProUGUI _healthText;
     [SerializeReference] private TextMeshProUGUI _wheatText;
-    [SerializeReference] private TextMeshProUGUI _hoardSizeText;
+    [SerializeReference] private TextMeshProUGUI _hordeSizeText;
     #endregion
 
     #region Methods
@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     {
         health = 100;
         wheat = 0;
-        hoardSize = 0;
+        hordeSize = 0;
         _anim = GetComponent<Animator>();
     }
 
@@ -39,7 +39,7 @@ public class Player : MonoBehaviour
         // Update the UI
         _healthText.text = $"Health: {health}";
         _wheatText.text = $"Wheat: {wheat}";
-        _hoardSizeText.text = $"Hoard Size: {hoardSize}";
+        _hordeSizeText.text = $"Horde Size: {hordeSize}";
     }
 
     /// <summary>
