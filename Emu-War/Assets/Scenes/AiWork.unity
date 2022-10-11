@@ -11946,11 +11946,23 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1194167189}
     - target: {fileID: 8065432941162202320, guid: 50f3a488a1b5ce64b9b1678b89710951, type: 3}
+      propertyPath: _wheatText
+      value: 
+      objectReference: {fileID: 1194167189}
+    - target: {fileID: 8065432941162202320, guid: 50f3a488a1b5ce64b9b1678b89710951, type: 3}
       propertyPath: healthText
       value: 
       objectReference: {fileID: 1589472616}
     - target: {fileID: 8065432941162202320, guid: 50f3a488a1b5ce64b9b1678b89710951, type: 3}
+      propertyPath: _healthText
+      value: 
+      objectReference: {fileID: 1589472616}
+    - target: {fileID: 8065432941162202320, guid: 50f3a488a1b5ce64b9b1678b89710951, type: 3}
       propertyPath: hoardSizeText
+      value: 
+      objectReference: {fileID: 1716936776}
+    - target: {fileID: 8065432941162202320, guid: 50f3a488a1b5ce64b9b1678b89710951, type: 3}
+      propertyPath: _hoardSizeText
       value: 
       objectReference: {fileID: 1716936776}
     - target: {fileID: 8065432941162202321, guid: 50f3a488a1b5ce64b9b1678b89710951, type: 3}
