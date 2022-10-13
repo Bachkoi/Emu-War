@@ -29,5 +29,11 @@ public class BulletBehavior : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         gameObject.SetActive(false);
+
+        // If the Wheat collides with an emu...
+        if (collision.gameObject.CompareTag("Emu"))
+        {
+            collision.gameObject.GetComponent<Player>().health -= 20;
+        }
     }
 }
