@@ -7,7 +7,7 @@ public class Horde : MonoBehaviour
 {
     #region Fields
     public Player player;
-    private float _followRadius = 1.00f;
+    private float _followRadius = 1.0f;
     public bool follow = false;
     private int _orientation;
     public Vector2 gap;
@@ -178,6 +178,75 @@ public class Horde : MonoBehaviour
             tempPos.y = player.transform.position.y + _followRadius;
             transform.position = tempPos;*/
             Orientation = 3;
+        }
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Emu")
+        {
+            Console.WriteLine("HIT EE");
+            if (collision.gameObject.GetComponent<Horde>().follow == false)
+            {
+                //player.EmuCollect(collision);
+                collision.gameObject.GetComponent<Horde>().follow = true;
+                player.horde.Add(collision.gameObject);
+                player.followRadius += 0.1f;
+                for (int i = 0; i < player.horde.Count; i++)
+                {
+                    player.horde[i].GetComponent<Horde>().FollowRadius = player.followRadius;
+                    player.horde[i].GetComponent<Horde>().Reposition((float)i + 1 * (360.0f / player.horde.Count));
+                }
+                /*foreach(GameObject obj in horde)
+                {
+                    obj.GetComponent<Horde>().FollowRadius = followRadius;
+                    obj.GetComponent<Horde>().Reposition(horde.Count);
+                }*/
+                player.emuCount = player.horde.Count;
+            }
+            /*
+            collision.gameObject.GetComponent<Horde>().follow = true;
+            player.horde.Add(collision.gameObject);
+            player.followRadius += 0.1f;
+            for (int i = 0; i < player.horde.Count; i++)
+            {
+                player.horde[i].GetComponent<Horde>().FollowRadius = player.followRadius;
+                player.horde[i].GetComponent<Horde>().Reposition((float)i + 1 * (360.0f / player.horde.Count));
+            }
+            /*foreach(GameObject obj in horde)
+            {
+                obj.GetComponent<Horde>().FollowRadius = followRadius;
+                obj.GetComponent<Horde>().Reposition(horde.Count);
+            }*/
+            //player.emuCount = player.horde.Count;
+        }
+    }
+
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        //Console.WriteLine(collision.gameObject);
+        if (collision.tag == "Emu")
+        {
+            Console.WriteLine("HIT EE");
+            if(collision.gameObject.GetComponent<Horde>().follow == false)
+            {
+                //player.EmuCollect(collision);
+            }
+            /*
+            collision.gameObject.GetComponent<Horde>().follow = true;
+            player.horde.Add(collision.gameObject);
+            player.followRadius += 0.1f;
+            for (int i = 0; i < player.horde.Count; i++)
+            {
+                player.horde[i].GetComponent<Horde>().FollowRadius = player.followRadius;
+                player.horde[i].GetComponent<Horde>().Reposition((float)i + 1 * (360.0f / player.horde.Count));
+            }
+            /*foreach(GameObject obj in horde)
+            {
+                obj.GetComponent<Horde>().FollowRadius = followRadius;
+                obj.GetComponent<Horde>().Reposition(horde.Count);
+            }*/
+            //player.emuCount = player.horde.Count;
         }
     }
 

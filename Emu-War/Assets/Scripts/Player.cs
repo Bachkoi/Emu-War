@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     public float speed;
     Animator anim;
     public List<GameObject> horde;
-    public float followRadius = 0.5f;
+    public float followRadius = 1.0f;
     public int emuCount = 0;
     private LineRenderer _lineRenderer;
     #endregion
@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         _lineRenderer = GetComponent<LineRenderer>();
-        _lineRenderer.SetVertexCount(360);
+        _lineRenderer.positionCount = 360;
     }
 
     /// <summary>
@@ -71,15 +71,24 @@ public class Player : MonoBehaviour
     ///<summary>
     /// Collects the Emu's and resultingly changes the speed of wheat collection and radius that the emus will follow in
     /// </summary>
-    public void EmuCollect()
+    public void EmuCollect(Collision caughtEmu)
     {
         // Check for the collection with the Emus
-        
+        horde.Add(caughtEmu.gameObject);
+        caughtEmu.gameObject.GetComponent<Horde>().follow = true;
+        followRadius += 0.1f;
+        for (int i = 0; i < horde.Count; i++)
+        {
+            horde[i].GetComponent<Horde>().FollowRadius = followRadius;
+            horde[i].GetComponent<Horde>().Reposition((float)i + 1 * (360.0f / horde.Count));
+        }
+        emuCount = horde.Count;
     }
+
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        Console.WriteLine(collision.gameObject);
-        if (collision.tag == "Emu")
+        //Console.WriteLine(collision.gameObject);
+        if (collision.tag == "Emu" && collision.gameObject.GetComponent<Horde>().follow == false)
         {
             Console.WriteLine("HIT");
             collision.gameObject.GetComponent<Horde>().follow = true;
@@ -89,6 +98,7 @@ public class Player : MonoBehaviour
             {
                 horde[i].GetComponent<Horde>().FollowRadius = followRadius;
                 horde[i].GetComponent<Horde>().Reposition((float)i+1 * (360.0f / horde.Count));
+                //horde[i].GetComponent<BoxCollider2D>().isTrigger = false;
             }
             /*foreach(GameObject obj in horde)
             {
