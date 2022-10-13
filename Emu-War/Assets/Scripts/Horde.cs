@@ -143,8 +143,8 @@ public class Horde : MonoBehaviour
         Vector2 tempPos = transform.position;
         //gap.x = _followRadius * (float)Math.Sin(rotationX);
         //gap.y = _followRadius * (float)Math.Cos(rotationY);
-        gap.x = (float)rng.NextDouble() * (_followRadius * (float)Math.Cos(theta));
-        gap.y = (float)rng.NextDouble() * (_followRadius * (float)Math.Sin(theta));
+        gap.x = (float)(rng.Next(40,100)/100.0f) * (_followRadius * (float)Math.Cos(theta));
+        gap.y = (float)(rng.Next(40,100)/100.0f) * (_followRadius * (float)Math.Sin(theta));
         tempPos.x = player.transform.position.x + gap.x;
         tempPos.y = player.transform.position.y + gap.y;
         transform.position = tempPos;

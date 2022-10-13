@@ -8,10 +8,12 @@ public class Player : MonoBehaviour
     #region Fields
     public float speed;
     Animator anim;
+    public List<GameObject> potentialEmus;
     public List<GameObject> horde;
     public float followRadius = 1.0f;
     public int emuCount = 0;
     private LineRenderer _lineRenderer;
+    public CircleCollider2D _circleCollider;
     #endregion
 
     #region Methods
@@ -20,6 +22,7 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         _lineRenderer = GetComponent<LineRenderer>();
         _lineRenderer.positionCount = 360;
+        _circleCollider = GetComponent<CircleCollider2D>();
     }
 
     /// <summary>
@@ -30,6 +33,19 @@ public class Player : MonoBehaviour
         // Movement
         FollowMouse();
         DrawCircle();
+        if(horde.Count > 0 && _circleCollider.enabled == false)
+        {
+            _circleCollider.enabled = true;
+        }
+        if(_circleCollider.enabled == true)
+        {
+            CircleHordeCollect();
+            _circleCollider.radius = followRadius;
+        }
+        if(horde.Count == potentialEmus.Count)
+        {
+            potentialEmus.Clear();
+        }
     }
 
     /// <summary>
@@ -84,7 +100,36 @@ public class Player : MonoBehaviour
         }
         emuCount = horde.Count;
     }
+    /// <summary>
+    /// Using the circle collider to act as the horde to collect/get hit by bullets.
+    /// </summary>
+    public void CircleHordeCollect()
+    {
+        foreach(GameObject obj in potentialEmus)
+        {
+            if (_circleCollider.IsTouching(obj.GetComponent<BoxCollider2D>()) && obj.GetComponent<Horde>().follow == false)
+            {
+                if (horde.Contains(obj))
+                {
+                    break;
+                }
+                horde.Add(obj);
+                emuCount++;
+                //_circleCollider.radius += 0.1f;
+                obj.GetComponent<Horde>().follow = true;
+                potentialEmus.Remove(obj);
+                followRadius += 0.1f;
+                for (int i = 0; i < horde.Count; i++)
+                {
+                    horde[i].GetComponent<Horde>().FollowRadius = followRadius;
+                    horde[i].GetComponent<Horde>().Reposition((float)i + 1 * (360.0f / horde.Count));
+                }
+            }
 
+        }
+        _circleCollider.radius = followRadius;
+
+    }
     public void OnTriggerEnter2D(Collider2D collision)
     {
         //Console.WriteLine(collision.gameObject);
