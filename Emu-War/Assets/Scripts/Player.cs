@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
 
         // Update the UI
         _healthText.text = $"Health: {health}";
-        _wheatText.text = $"Wheat: {wheat}";
+        _wheatText.text = $"Wheat: {wheat} / 33";
         _hordeSizeText.text = $"Horde Size: {hordeSize}";
     }
 

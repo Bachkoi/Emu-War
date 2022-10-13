@@ -27,16 +27,19 @@ public class BulletBehavior : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-
-        // If the Wheat collides with an emu...
+        // If the bullet collides with an emu...
         if (collision.gameObject.CompareTag("Emu"))
         {
             collision.gameObject.GetComponent<Player>().health -= 20;
+            gameObject.SetActive(false);
         }
 
-        gameObject.SetActive(false);
+        // If the bullet collides with an wall...
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            gameObject.SetActive(false);
+        }
     }
 }
