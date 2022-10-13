@@ -7,7 +7,7 @@ public class MenuManager : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene("CollisionTest");
+        SceneManager.LoadScene("Level");
     }
 
     public void ReturnToMenu()
