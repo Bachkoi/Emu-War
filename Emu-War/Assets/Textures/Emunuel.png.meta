@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5cb766eef5080bc4fb5d2e8106134fc0
+guid: 6564196767639f04d90bec9bf4d2cf26
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -116,13 +116,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Emunuel_0
+      name: Emunuel 1_0
       rect:
         serializedVersion: 2
         x: 155
-        y: 35
+        y: 50
         width: 155
-        height: 420
+        height: 405
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,8 +130,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 398d9baa62c0c754e9cd0b50d3bfc47d
-      internalID: 873322778
+      spriteID: 331e8e343d744a045ba1a9908e2fb948
+      internalID: -415024603
       vertices: []
       indices: 
       edges: []
@@ -147,7 +147,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Emunuel_0: 873322778
+      Emunuel 1_0: -415024603
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
