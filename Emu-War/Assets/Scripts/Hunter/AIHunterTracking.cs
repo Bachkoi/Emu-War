@@ -21,7 +21,11 @@ public class AIHunterTracking : MonoBehaviour
     private int _rotateTimer;
     #endregion Patrol Points
 
-    #endregion
+
+    private Animator _animator;
+
+    #endregion Fields
+
     #region Properties
     public bool InSight
     {
@@ -38,6 +42,7 @@ public class AIHunterTracking : MonoBehaviour
         _hotpoints.Enqueue(_currentNode);
         _rotateToPoint = true;
         _rotateTimer = 0;
+        //_animator = gameObject.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -52,6 +57,7 @@ public class AIHunterTracking : MonoBehaviour
         if (inSight)
         {
             //gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+            //_animator.SetBool("isWalking", false);
             gameObject.GetComponent<AIHunterShooting>().canFire = true;
         }
         else
@@ -63,10 +69,11 @@ public class AIHunterTracking : MonoBehaviour
 
     public void Patrol()
     {
-        gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
+        //gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
 
         if (_rotateToPoint)
         {
+
             _rotateTimer++;
 
             //logic for later STILL IN PROGRESS
@@ -75,6 +82,7 @@ public class AIHunterTracking : MonoBehaviour
             {
                 _rotateToPoint = false;
                 _rotateTimer = 0;
+                //_animator.SetBool("isWalking", true);
                 //transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.x, transform.eulerAngles.z + 90);
             }
         }
@@ -97,7 +105,7 @@ public class AIHunterTracking : MonoBehaviour
             Debug.Log(_currentNode);
             _hotpoints.Enqueue(_currentNode);
             _rotateToPoint = true;
-            //_rotatePoint = (_currentNode - transform.position).normalized;
+            //_animator.SetBool("isWalking", false);
         }
     }
 
@@ -107,8 +115,10 @@ public class AIHunterTracking : MonoBehaviour
         Vector3 targetOfRotation = _currentNode - transform.position;
         float angle = Mathf.Atan2(targetOfRotation.y, targetOfRotation.x) * Mathf.Rad2Deg;
         Quaternion rotationQuaternion = Quaternion.AngleAxis(angle, Vector3.forward);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotationQuaternion, _rotationSpeed * Time.deltaTime);
-        float dot = Vector2.Dot((targetOfRotation).normalized, this.transform.forward);
+        gameObject.GetComponentInChildren<Transform>().rotation = Quaternion.Slerp(transform.rotation, rotationQuaternion, _rotationSpeed * Time.deltaTime);
+        //transform.rotation = Quaternion.Slerp(transform.rotation, rotationQuaternion, _rotationSpeed * Time.deltaTime);
+        float dot = Vector2.Dot((targetOfRotation).normalized, gameObject.GetComponentInChildren<Transform>().forward);
+        //float dot = Vector2.Dot((targetOfRotation).normalized, this.transform.forward);
         return dot;
     }
 
