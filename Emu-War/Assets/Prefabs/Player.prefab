@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8065432941162202325}
   - component: {fileID: 8065432941162202324}
   - component: {fileID: 1656836546}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Player
   m_TagString: Emu
   m_Icon: {fileID: 0}
