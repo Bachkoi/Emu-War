@@ -9,20 +9,17 @@ public class Player : MonoBehaviour
     public float speed;
     Animator anim;
     public List<GameObject> potentialEmus;
+    public Queue<GameObject> hordeQueue;
     public List<GameObject> horde;
     public float followRadius = 1.0f;
     public int emuCount = 0;
-    private LineRenderer _lineRenderer;
-    public CircleCollider2D _circleCollider;
     #endregion
 
     #region Methods
     void Start()
     {
         anim = GetComponent<Animator>();
-        _lineRenderer = GetComponent<LineRenderer>();
-        _lineRenderer.positionCount = 360;
-        _circleCollider = GetComponent<CircleCollider2D>();
+        hordeQueue = new Queue <GameObject>();
     }
 
     /// <summary>
@@ -32,20 +29,6 @@ public class Player : MonoBehaviour
     {
         // Movement
         FollowMouse();
-        DrawCircle();
-        if(horde.Count > 0 && _circleCollider.enabled == false)
-        {
-            _circleCollider.enabled = true;
-        }
-        if(_circleCollider.enabled == true)
-        {
-            CircleHordeCollect();
-            _circleCollider.radius = followRadius;
-        }
-        if(horde.Count == potentialEmus.Count)
-        {
-            potentialEmus.Clear();
-        }
     }
 
     /// <summary>
@@ -62,13 +45,15 @@ public class Player : MonoBehaviour
         // Check if the mouse is inside the player
         bool mouseInsidePlayer = GetComponent<Collider2D>().bounds.Contains(targetPos);
 
+        // FOR Sprint 4, have the horde utilize the FollowMouse method to make it more fluid.
+
         // If it isn't, move the player
         if (!mouseInsidePlayer)
         {
             anim.SetBool("isWalking", true);
             foreach(GameObject obj in horde)
             {
-                obj.GetComponent<Animator>().SetBool("isWalking", true);
+                obj.GetComponent<Animator>().SetBool("isWalking", true); // Set horde anim to be true.
             }
 
             // Transform the Player object toward the target position
@@ -79,89 +64,56 @@ public class Player : MonoBehaviour
             anim.SetBool("isWalking", false);
             foreach (GameObject obj in horde)
             {
-                obj.GetComponent<Animator>().SetBool("isWalking", false);
+                obj.GetComponent<Animator>().SetBool("isWalking", false); // Set the horde anim to be false.
             }
         }
     }
 
     ///<summary>
-    /// Collects the Emu's and resultingly changes the speed of wheat collection and radius that the emus will follow in
+    /// Collects the Emu's and resultingly changes the speed of wheat collection and radius that the emus will follow in, is called by the horde itself.
     /// </summary>
-    public void EmuCollect(Collision caughtEmu)
+    public void EmuCollect(GameObject caughtEmu)
     {
         // Check for the collection with the Emus
-        horde.Add(caughtEmu.gameObject);
-        caughtEmu.gameObject.GetComponent<Horde>().follow = true;
+        //horde.Add(caughtEmu);
+        hordeQueue.Enqueue(caughtEmu);
+        caughtEmu.GetComponent<Horde>().follow = true;
         followRadius += 0.1f;
-        for (int i = 0; i < horde.Count; i++)
-        {
-            horde[i].GetComponent<Horde>().FollowRadius = followRadius;
-            horde[i].GetComponent<Horde>().Reposition((float)i + 1 * (360.0f / horde.Count));
-        }
-        emuCount = horde.Count;
+        HordeReposition();
     }
     /// <summary>
-    /// Using the circle collider to act as the horde to collect/get hit by bullets.
+    /// HordeDeath Method
     /// </summary>
-    public void CircleHordeCollect()
-    {
-        foreach(GameObject obj in potentialEmus)
-        {
-            if (_circleCollider.IsTouching(obj.GetComponent<BoxCollider2D>()) && obj.GetComponent<Horde>().follow == false)
-            {
-                if (horde.Contains(obj))
-                {
-                    break;
-                }
-                horde.Add(obj);
-                emuCount++;
-                //_circleCollider.radius += 0.1f;
-                obj.GetComponent<Horde>().follow = true;
-                potentialEmus.Remove(obj);
-                followRadius += 0.1f;
-                for (int i = 0; i < horde.Count; i++)
-                {
-                    horde[i].GetComponent<Horde>().FollowRadius = followRadius;
-                    horde[i].GetComponent<Horde>().Reposition((float)i + 1 * (360.0f / horde.Count));
-                }
-            }
+    // This method accepts in the parameter of a GameObject reference of the emu that is shot. It will remove the emu from the collected Horde list.
+    // It will then decrement the emuCount field and reduce the following radius. Then go and reposition the overall horde.
+    /// <param name="shotEmu"></param>
+    public void HordeDeath(GameObject shotEmu){
+        
+        //horde.Remove(shotEmu);
+        hordeQueue.Dequeue();
 
-        }
-        _circleCollider.radius = followRadius;
+        followRadius -= 0.1f;
+        shotEmu.gameObject.SetActive(false);
 
+        HordeReposition();
     }
-    public void OnTriggerEnter2D(Collider2D collision)
+
+    ///<summary>
+    /// 
+    /// </summary>
+    public void HordeReposition()
     {
-        //Console.WriteLine(collision.gameObject);
-        if (collision.tag == "Emu" && collision.gameObject.GetComponent<Horde>().follow == false)
+        GameObject[] tempArr = hordeQueue.ToArray();
+        for (int i = 0; i < hordeQueue.Count; i++)
         {
-            Console.WriteLine("HIT");
-            collision.gameObject.GetComponent<Horde>().follow = true;
-            horde.Add(collision.gameObject);
-            followRadius += 0.1f;
-            for(int i = 0; i < horde.Count; i++)
-            {
-                horde[i].GetComponent<Horde>().FollowRadius = followRadius;
-                horde[i].GetComponent<Horde>().Reposition((float)i+1 * (360.0f / horde.Count));
-                //horde[i].GetComponent<BoxCollider2D>().isTrigger = false;
-            }
-            /*foreach(GameObject obj in horde)
-            {
-                obj.GetComponent<Horde>().FollowRadius = followRadius;
-                obj.GetComponent<Horde>().Reposition(horde.Count);
-            }*/
-            emuCount = horde.Count;
+            //horde[i].GetComponent<Horde>().FollowRadius = followRadius;
+            //horde[i].GetComponent<Horde>().Reposition((float)i + 1 * (360.0f / horde.Count));
+
+            // Attempt with Queue
+            tempArr[i].GetComponent<Horde>().FollowRadius = followRadius;
+            tempArr[i].GetComponent<Horde>().Reposition((float)i + 1 * (360.0f / horde.Count));
         }
-    }
-    
-    public void DrawCircle() 
-    {
-        for(int i = 0; i < 360; i++)
-        {
-            float x = followRadius * (float)Math.Cos(Mathf.Deg2Rad * (double)i);
-            float y = followRadius * (float)Math.Sin(Mathf.Deg2Rad * (double)i);
-            _lineRenderer.SetPosition(i, new Vector3(transform.position.x + (float)x, transform.position.y + (float)y, 0));
-        }
+        emuCount = hordeQueue.Count;
     }
     #endregion
 }

@@ -8346,6 +8346,7 @@ GameObject:
   - component: {fileID: 226512463}
   - component: {fileID: 226512462}
   - component: {fileID: 226512461}
+  - component: {fileID: 226512466}
   m_Layer: 0
   m_Name: Test Emu (1)
   m_TagString: Emu
@@ -8481,6 +8482,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &226512466
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 226512460}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &289266467
 GameObject:
   m_ObjectHideFlags: 0
@@ -8494,6 +8516,7 @@ GameObject:
   - component: {fileID: 289266470}
   - component: {fileID: 289266469}
   - component: {fileID: 289266468}
+  - component: {fileID: 289266473}
   m_Layer: 0
   m_Name: Test Emu (4)
   m_TagString: Emu
@@ -8629,6 +8652,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &289266473
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 289266467}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &519137173
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10602,6 +10646,7 @@ GameObject:
   - component: {fileID: 1068695884}
   - component: {fileID: 1068695883}
   - component: {fileID: 1068695882}
+  - component: {fileID: 1068695887}
   m_Layer: 0
   m_Name: Test Emu (2)
   m_TagString: Emu
@@ -10737,6 +10782,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &1068695887
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068695881}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1170476736
 GameObject:
   m_ObjectHideFlags: 0
@@ -10750,6 +10816,7 @@ GameObject:
   - component: {fileID: 1170476739}
   - component: {fileID: 1170476740}
   - component: {fileID: 1170476741}
+  - component: {fileID: 1170476742}
   m_Layer: 0
   m_Name: Test Emu
   m_TagString: Emu
@@ -10885,6 +10952,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &1170476742
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1170476736}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1195406172
 GameObject:
   m_ObjectHideFlags: 0
@@ -10898,6 +10986,7 @@ GameObject:
   - component: {fileID: 1195406175}
   - component: {fileID: 1195406174}
   - component: {fileID: 1195406173}
+  - component: {fileID: 1195406178}
   m_Layer: 0
   m_Name: Test Emu (6)
   m_TagString: Emu
@@ -11033,6 +11122,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &1195406178
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1195406172}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!4 &1270770061 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8065432941162202326, guid: 50f3a488a1b5ce64b9b1678b89710951, type: 3}
@@ -11051,6 +11161,7 @@ GameObject:
   - component: {fileID: 1380714925}
   - component: {fileID: 1380714924}
   - component: {fileID: 1380714923}
+  - component: {fileID: 1380714928}
   m_Layer: 0
   m_Name: Test Emu (5)
   m_TagString: Emu
@@ -11186,6 +11297,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &1380714928
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1380714922}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &1434270242
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11750,6 +11882,7 @@ GameObject:
   - component: {fileID: 2066569190}
   - component: {fileID: 2066569189}
   - component: {fileID: 2066569188}
+  - component: {fileID: 2066569193}
   m_Layer: 0
   m_Name: Test Emu (3)
   m_TagString: Emu
@@ -11885,6 +12018,27 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &2066569193
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066569187}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &5292763776004411993
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11996,6 +12150,14 @@ PrefabInstance:
     - target: {fileID: 8065432941162202321, guid: 50f3a488a1b5ce64b9b1678b89710951, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8065432941162202321, guid: 50f3a488a1b5ce64b9b1678b89710951, type: 3}
+      propertyPath: m_TagString
+      value: Emu
+      objectReference: {fileID: 0}
+    - target: {fileID: 8065432941162202325, guid: 50f3a488a1b5ce64b9b1678b89710951, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8065432941162202326, guid: 50f3a488a1b5ce64b9b1678b89710951, type: 3}
       propertyPath: m_RootOrder
