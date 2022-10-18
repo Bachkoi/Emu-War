@@ -75,7 +75,7 @@ public class Player : MonoBehaviour
     public void EmuCollect(GameObject caughtEmu)
     {
         // Check for the collection with the Emus
-        //horde.Add(caughtEmu);
+        horde.Add(caughtEmu);
         hordeQueue.Enqueue(caughtEmu);
         caughtEmu.GetComponent<Horde>().follow = true;
         followRadius += 0.1f;
@@ -89,7 +89,7 @@ public class Player : MonoBehaviour
     /// <param name="shotEmu"></param>
     public void HordeDeath(GameObject shotEmu){
         
-        //horde.Remove(shotEmu);
+        horde.Remove(shotEmu);
         hordeQueue.Dequeue();
 
         followRadius -= 0.1f;
@@ -104,14 +104,16 @@ public class Player : MonoBehaviour
     public void HordeReposition()
     {
         GameObject[] tempArr = hordeQueue.ToArray();
-        for (int i = 0; i < hordeQueue.Count; i++)
+        hordeQueue.Clear();
+        for (int i = 0; i < tempArr.Length; i++)
         {
             //horde[i].GetComponent<Horde>().FollowRadius = followRadius;
             //horde[i].GetComponent<Horde>().Reposition((float)i + 1 * (360.0f / horde.Count));
 
             // Attempt with Queue
             tempArr[i].GetComponent<Horde>().FollowRadius = followRadius;
-            tempArr[i].GetComponent<Horde>().Reposition((float)i + 1 * (360.0f / horde.Count));
+            tempArr[i].GetComponent<Horde>().Reposition(((float)i + 1) * (360.0f / tempArr.Length));
+            hordeQueue.Enqueue(tempArr[i]);
         }
         emuCount = hordeQueue.Count;
     }

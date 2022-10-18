@@ -8466,7 +8466,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1656836547}
   follow: 0
+  inWall: 0
   gap: {x: 0, y: 0}
+  wallPos: {x: 0, y: 0}
+  isDead: 0
 --- !u!4 &226512465
 Transform:
   m_ObjectHideFlags: 0
@@ -8636,7 +8639,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1656836547}
   follow: 0
+  inWall: 0
   gap: {x: 0, y: 0}
+  wallPos: {x: 0, y: 0}
+  isDead: 0
 --- !u!4 &289266472
 Transform:
   m_ObjectHideFlags: 0
@@ -8845,7 +8851,7 @@ GameObject:
   - component: {fileID: 587109038}
   m_Layer: 0
   m_Name: Walls
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10766,7 +10772,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1656836547}
   follow: 0
+  inWall: 0
   gap: {x: 0, y: 0}
+  wallPos: {x: 0, y: 0}
+  isDead: 0
 --- !u!4 &1068695886
 Transform:
   m_ObjectHideFlags: 0
@@ -10838,7 +10847,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1656836547}
   follow: 0
+  inWall: 0
   gap: {x: 0, y: 0}
+  wallPos: {x: 0, y: 0}
+  isDead: 0
 --- !u!4 &1170476738
 Transform:
   m_ObjectHideFlags: 0
@@ -11106,7 +11118,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1656836547}
   follow: 0
+  inWall: 0
   gap: {x: 0, y: 0}
+  wallPos: {x: 0, y: 0}
+  isDead: 0
 --- !u!4 &1195406177
 Transform:
   m_ObjectHideFlags: 0
@@ -11281,7 +11296,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1656836547}
   follow: 0
+  inWall: 0
   gap: {x: 0, y: 0}
+  wallPos: {x: 0, y: 0}
+  isDead: 0
 --- !u!4 &1380714927
 Transform:
   m_ObjectHideFlags: 0
@@ -12002,7 +12020,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1656836547}
   follow: 0
+  inWall: 0
   gap: {x: 0, y: 0}
+  wallPos: {x: 0, y: 0}
+  isDead: 0
 --- !u!4 &2066569192
 Transform:
   m_ObjectHideFlags: 0

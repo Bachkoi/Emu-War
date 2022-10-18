@@ -9,8 +9,11 @@ public class Horde : MonoBehaviour
     public Player player;
     private float _followRadius = 1.0f;
     public bool follow = false;
+    public bool inWall = false;
     public Vector2 gap;
+    public Vector2 wallPos;
     Animator anim;
+    public bool isDead;
     private float _speed = 5f;
     #endregion
 
@@ -38,10 +41,20 @@ public class Horde : MonoBehaviour
                 Vector2 tempPos = this.gameObject.transform.position;
                 tempPos.x = player.transform.position.x + gap.x;
                 tempPos.y = player.transform.position.y + gap.y;
-                this.gameObject.transform.position = Vector2.MoveTowards(this.gameObject.transform.position, tempPos, _speed * Time.deltaTime);
+                if (inWall)
+                {
+                    this.gameObject.transform.position = Vector2.MoveTowards(this.gameObject.transform.position, player.transform.position, _speed * Time.deltaTime);
+                }
+                else
+                {
+                    this.gameObject.transform.position = Vector2.MoveTowards(this.gameObject.transform.position, tempPos, _speed * Time.deltaTime);
+                }
                 //transform.position = tempPos;
             }
-
+            if (isDead == true)
+            {
+                player.HordeDeath(this.gameObject);
+            }
         }
     }
     /// <summary>
@@ -54,8 +67,8 @@ public class Horde : MonoBehaviour
         System.Random rng = new System.Random();
         Vector2 tempPos = this.gameObject.transform.position;
 
-        gap.x = (float)((rng.Next(40, 100)) / 100.0f) * (_followRadius * MathF.Cos(2));
-        gap.y = (float)((rng.Next(40, 100)) / 100.0f) * (_followRadius);
+        gap.x = (float)((rng.Next(40, 100)) / 100.0f) * (_followRadius * MathF.Cos(theta));
+        gap.y = (float)((rng.Next(40, 100)) / 100.0f) * (_followRadius * MathF.Sin(theta));
 
         //gap.x = (float)((rng.Next(40,100)) / 100.0f) * (_followRadius * (float)Math.Cos(theta));
         //gap.y = (float)((rng.Next(40,100)) / 100.0f) * (_followRadius * (float)Math.Sin(theta));
@@ -64,7 +77,6 @@ public class Horde : MonoBehaviour
         tempPos.y = player.transform.position.y + gap.y;
         //transform.position = tempPos;
         this.gameObject.transform.position = Vector2.MoveTowards(this.gameObject.transform.position, tempPos, _speed * Time.deltaTime);
-
     }
 
     /// <summary>
@@ -77,16 +89,34 @@ public class Horde : MonoBehaviour
             case "Emu":
                 if(follow == false){
                     player.EmuCollect(this.gameObject);
-
                 }
                 break;
 
             case "bullet":
                 if(follow == true){
-                    player.HordeDeath(this.gameObject);
+                    if(isDead == true){
+                        player.HordeDeath(this.gameObject);
+                    }
+                }
+                break;
+
+            case "Obstacle":
+                if(follow == true)
+                {
+                    this.gameObject.transform.position = Vector2.MoveTowards(this.gameObject.transform.position, player.transform.position, _speed * Time.deltaTime);
+                    inWall = true;
+                    // NEED TO CALL THIS IN UPDATE TOO
                 }
                 break;
         }
         
+    }
+
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.tag == "Obstacle")
+        {
+            inWall = false;
+        }
     }
 }
