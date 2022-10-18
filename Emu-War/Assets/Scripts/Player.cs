@@ -1,18 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
     #region Fields
+    public int health;
+    public int wheat;
+    public int hordeSize;
     public float speed;
-    Animator anim;
+    private Animator _anim;
+    [SerializeReference] private TextMeshProUGUI _healthText;
+    [SerializeReference] private TextMeshProUGUI _wheatText;
+    [SerializeReference] private TextMeshProUGUI _hordeSizeText;
     #endregion
 
     #region Methods
+    /// <summary>
+    /// Initialize Fields.
+    /// </summary>
     void Start()
     {
-        anim = GetComponent<Animator>();
+        health = 100;
+        wheat = 0;
+        hordeSize = 0;
+        _anim = GetComponent<Animator>();
     }
 
     /// <summary>
@@ -22,6 +35,11 @@ public class Player : MonoBehaviour
     {
         // Movement
         FollowMouse();
+
+        // Update the UI
+        _healthText.text = $"Health: {health}";
+        _wheatText.text = $"Wheat: {wheat} / 33";
+        _hordeSizeText.text = $"Horde Size: {hordeSize}";
     }
 
     /// <summary>
@@ -30,10 +48,8 @@ public class Player : MonoBehaviour
     private void FollowMouse()
     {
         // Get the target position
-        Vector2 targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
-        // Get the object's current position
-        Vector2 objectPos = Camera.main.WorldToScreenPoint(transform.position);
+        Vector3 targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        targetPos.z = -1;
 
         // Check if the mouse is inside the player
         bool mouseInsidePlayer = GetComponent<Collider2D>().bounds.Contains(targetPos);
@@ -41,14 +57,14 @@ public class Player : MonoBehaviour
         // If it isn't, move the player
         if (!mouseInsidePlayer)
         {
-            anim.SetBool("isWalking", true);
+            _anim.SetBool("isWalking", true);
 
             // Transform the Player object toward the target position
-            transform.position = Vector2.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
         }
         else
         {
-            anim.SetBool("isWalking", false);
+            _anim.SetBool("isWalking", false);
         }
     }
     #endregion

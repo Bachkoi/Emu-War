@@ -18,6 +18,7 @@ public class BulletBehavior : MonoBehaviour
     void Update()
     {
         transform.position += transform.right * _bulletSpeed * Time.deltaTime;
+        transform.position = new Vector3(transform.position.x, transform.position.y, -1.0f);
         _lifetimeCount++;
         if(_lifetimeCount > 300)
         {
@@ -26,8 +27,19 @@ public class BulletBehavior : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        gameObject.SetActive(false);
+        // If the bullet collides with an emu...
+        if (collision.gameObject.CompareTag("Emu"))
+        {
+            collision.gameObject.GetComponent<Player>().health -= 20;
+            gameObject.SetActive(false);
+        }
+
+        // If the bullet collides with an wall...
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            gameObject.SetActive(false);
+        }
     }
 }

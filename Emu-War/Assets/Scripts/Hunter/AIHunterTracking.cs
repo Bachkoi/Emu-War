@@ -94,7 +94,7 @@ public class AIHunterTracking : MonoBehaviour
         if(Vector2.Distance(transform.position,_currentNode) <= 0.2f)
         {
             _currentNode = _hotpoints.Dequeue();
-            Debug.Log(_currentNode);
+            //Debug.Log(_currentNode);
             _hotpoints.Enqueue(_currentNode);
             _rotateToPoint = true;
             //_rotatePoint = (_currentNode - transform.position).normalized;
