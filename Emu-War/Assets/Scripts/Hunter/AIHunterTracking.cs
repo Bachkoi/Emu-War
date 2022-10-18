@@ -6,6 +6,7 @@ public class AIHunterTracking : MonoBehaviour
 {
     #region Fields
     public bool inSight;
+    public bool inPeripheral;
     public float hunterSpeed;
     [SerializeField]
     private float _rotationSpeed;
@@ -28,6 +29,11 @@ public class AIHunterTracking : MonoBehaviour
         get { return inSight; }
         set { inSight = value; }
     }
+    public bool InPeripheral
+    {
+        get { return inPeripheral; }
+        set { inPeripheral = value; }
+    }
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -49,7 +55,7 @@ public class AIHunterTracking : MonoBehaviour
     public void OnSight()
     {
         //If Emu is in sight, shoot, otherwise patrol
-        if (inSight)
+        if (inSight || inPeripheral)
         {
             //gameObject.GetComponent<SpriteRenderer>().color = Color.red;
             gameObject.GetComponent<AIHunterShooting>().canFire = true;
