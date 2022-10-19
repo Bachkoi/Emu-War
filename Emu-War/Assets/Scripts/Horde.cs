@@ -12,7 +12,8 @@ public class Horde : MonoBehaviour
     public bool inWall = false;
     public Vector2 gap;
     public Vector2 wallPos;
-    Animator anim;
+    public int hordeSize = 0;
+    //Animator anim;
     public bool isDead;
     private float _speed = 5f;
     #endregion
@@ -28,7 +29,7 @@ public class Horde : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        anim = GetComponent<Animator>();
+        //anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -50,6 +51,7 @@ public class Horde : MonoBehaviour
                     this.gameObject.transform.position = Vector2.MoveTowards(this.gameObject.transform.position, tempPos, _speed * Time.deltaTime);
                 }
                 //transform.position = tempPos;
+                hordeSize = player.hordeSize;
             }
             if (isDead == true)
             {
@@ -87,6 +89,12 @@ public class Horde : MonoBehaviour
         //Console.WriteLine(collision.gameObject);
         switch(collision.tag){
             case "Emu":
+                if (follow == false)
+                {
+                    player.EmuCollect(this.gameObject);
+                }
+                break;
+            case "Horde":
                 if(follow == false){
                     player.EmuCollect(this.gameObject);
                 }
@@ -94,14 +102,22 @@ public class Horde : MonoBehaviour
 
             case "bullet":
                 if(follow == true){
-                    if(isDead == true){
-                        player.HordeDeath(this.gameObject);
-                    }
+                    player.HordeDeath(this.gameObject);
+                    isDead = true;
                 }
                 break;
 
             case "Obstacle":
                 if(follow == true)
+                {
+                    this.gameObject.transform.position = Vector2.MoveTowards(this.gameObject.transform.position, player.transform.position, _speed * Time.deltaTime);
+                    inWall = true;
+                    // NEED TO CALL THIS IN UPDATE TOO
+                }
+                break;
+
+            case "Wall":
+                if (follow == true)
                 {
                     this.gameObject.transform.position = Vector2.MoveTowards(this.gameObject.transform.position, player.transform.position, _speed * Time.deltaTime);
                     inWall = true;

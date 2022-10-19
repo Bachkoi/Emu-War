@@ -11,7 +11,6 @@ public class Player : MonoBehaviour
     public int wheat;
     public int hordeSize;
     public float speed;
-    Animator anim;
     public List<GameObject> potentialEmus;
     public Queue<GameObject> hordeQueue;
     public List<GameObject> horde;
@@ -29,7 +28,6 @@ public class Player : MonoBehaviour
     /// </summary>
     void Start()
     {
-        anim = GetComponent<Animator>();
         hordeQueue = new Queue <GameObject>();
         health = 100;
         wheat = 0;
@@ -68,10 +66,9 @@ public class Player : MonoBehaviour
         // If it isn't, move the player
         if (!mouseInsidePlayer)
         {
-            anim.SetBool("isWalking", true);
             foreach(GameObject obj in horde)
             {
-                obj.GetComponent<Animator>().SetBool("isWalking", true); // Set horde anim to be true.
+                //obj.GetComponent<Animator>().SetBool("isWalking", true); // Set horde anim to be true.
             }
             _anim.SetBool("isWalking", true);
 
@@ -80,10 +77,9 @@ public class Player : MonoBehaviour
         }
         else
         {
-            anim.SetBool("isWalking", false);
             foreach (GameObject obj in horde)
             {
-                obj.GetComponent<Animator>().SetBool("isWalking", false); // Set the horde anim to be false.
+                //obj.GetComponent<Animator>().SetBool("isWalking", false); // Set the horde anim to be false. COMMENTED UNTIL WE HAVE THE ANIMATIONS WORKING
             }
             _anim.SetBool("isWalking", false);
         }
@@ -135,6 +131,7 @@ public class Player : MonoBehaviour
             tempArr[i].GetComponent<Horde>().Reposition(((float)i + 1) * (360.0f / tempArr.Length));
             hordeQueue.Enqueue(tempArr[i]);
         }
+        hordeSize = hordeQueue.Count;
         emuCount = hordeQueue.Count;
     }
     #endregion
