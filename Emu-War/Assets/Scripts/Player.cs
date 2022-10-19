@@ -43,6 +43,17 @@ public class Player : MonoBehaviour
         // Movement
         FollowMouse();
 
+        if (Input.GetKeyDown(KeyCode.Space)){
+            if(hordeSize > 0)
+            {
+                HordeShoot();
+            }
+            else
+            {
+                // Tell player they don't have a horde to shoot.
+            }
+        }
+
         // Update the UI
         _healthText.text = $"Health: {health}";
         _wheatText.text = $"Wheat: {wheat} / 33";
@@ -115,7 +126,8 @@ public class Player : MonoBehaviour
     }
 
     ///<summary>
-    /// 
+    /// Horde Reposition will take the queue of the horde and then set it to an array to then be able to retrieve the individual game objects.
+    /// From there the method will then call the horde classes own reposition method on each horde object and then requeue them and update the necessary fields.
     /// </summary>
     public void HordeReposition()
     {
@@ -133,6 +145,26 @@ public class Player : MonoBehaviour
         }
         hordeSize = hordeQueue.Count;
         emuCount = hordeQueue.Count;
+    }
+
+    /// <summary>
+    /// Horde Shoot will be triggered by pressing a button for now will be the space bar to shoot an emu in the direction and will stop when it collides with a wall.
+    /// </summary>
+    public void HordeShoot()
+    {
+        GameObject thrownEmu = hordeQueue.Dequeue();
+        horde.Remove(thrownEmu);
+        followRadius -= 0.1f;
+        thrownEmu.GetComponent<Horde>().isThrown = false;
+        thrownEmu.GetComponent<Horde>().follow = false;
+
+        Vector3 targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        targetPos.z = 0;
+
+        thrownEmu.transform.position = Vector3.MoveTowards(thrownEmu.transform.position, targetPos, speed * Time.deltaTime);
+        thrownEmu.GetComponent<Horde>().throwPos = targetPos;
+        HordeReposition();
+
     }
     #endregion
 }

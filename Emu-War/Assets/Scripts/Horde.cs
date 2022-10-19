@@ -10,8 +10,10 @@ public class Horde : MonoBehaviour
     private float _followRadius = 1.0f;
     public bool follow = false;
     public bool inWall = false;
+    public bool isThrown = false;
     public Vector2 gap;
     public Vector2 wallPos;
+    public Vector3 throwPos;
     public int hordeSize = 0;
     //Animator anim;
     public bool isDead;
@@ -57,6 +59,14 @@ public class Horde : MonoBehaviour
             {
                 player.HordeDeath(this.gameObject);
             }
+            if(isThrown == true)
+            {
+                this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, throwPos, _speed * Time.deltaTime);
+                if(this.gameObject.transform.position == throwPos)
+                {
+                    isThrown = false;
+                }
+            }
         }
     }
     /// <summary>
@@ -89,13 +99,14 @@ public class Horde : MonoBehaviour
         //Console.WriteLine(collision.gameObject);
         switch(collision.tag){
             case "Emu":
-                if (follow == false)
+                if (follow == false && isThrown == false)
                 {
                     player.EmuCollect(this.gameObject);
                 }
                 break;
             case "Horde":
-                if(follow == false){
+                if(follow == false && isThrown == false)
+                {
                     player.EmuCollect(this.gameObject);
                 }
                 break;
@@ -113,6 +124,11 @@ public class Horde : MonoBehaviour
                     this.gameObject.transform.position = Vector2.MoveTowards(this.gameObject.transform.position, player.transform.position, _speed * Time.deltaTime);
                     inWall = true;
                     // NEED TO CALL THIS IN UPDATE TOO
+                }
+                else
+                {
+                    this.gameObject.transform.position = Vector2.MoveTowards(this.gameObject.transform.position, collision.gameObject.transform.position, _speed * Time.deltaTime);
+                    _speed = 0f;
                 }
                 break;
 
@@ -133,6 +149,10 @@ public class Horde : MonoBehaviour
         if(collision.tag == "Obstacle")
         {
             inWall = false;
+            if(isThrown == true)
+            {
+                isThrown = false;
+            }
         }
     }
 }
