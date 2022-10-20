@@ -114,15 +114,17 @@ public class Player : MonoBehaviour
     // This method accepts in the parameter of a GameObject reference of the emu that is shot. It will remove the emu from the collected Horde list.
     // It will then decrement the emuCount field and reduce the following radius. Then go and reposition the overall horde.
     /// <param name="shotEmu"></param>
-    public void HordeDeath(GameObject shotEmu){
-        
-        horde.Remove(shotEmu);
-        hordeQueue.Dequeue();
-
-        followRadius -= 0.1f;
+    public void HordeDeath(GameObject shotEmu)
+    {
         shotEmu.gameObject.SetActive(false);
+        if (hordeQueue.Count > 0)
+        {
+            horde.Remove(shotEmu);
+            hordeQueue.Dequeue();
+            followRadius -= 0.1f;
+            HordeReposition();
+        }
 
-        HordeReposition();
     }
 
     ///<summary>
@@ -155,7 +157,7 @@ public class Player : MonoBehaviour
         GameObject thrownEmu = hordeQueue.Dequeue();
         horde.Remove(thrownEmu);
         followRadius -= 0.1f;
-        thrownEmu.GetComponent<Horde>().isThrown = false;
+        thrownEmu.GetComponent<Horde>().isThrown = true;
         thrownEmu.GetComponent<Horde>().follow = false;
 
         Vector3 targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);

@@ -10,7 +10,7 @@ public class HunterVision : MonoBehaviour
     #endregion
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Emu")
+        if(collision.gameObject.tag == "Emu" || collision.gameObject.tag == "Horde")
         {
             _hunterAi.GetComponent<AIHunterTracking>().InSight = true;
         }
@@ -18,7 +18,7 @@ public class HunterVision : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Emu")
+        if (collision.gameObject.tag == "Emu" || collision.gameObject.tag == "Horde")
         {
             _hunterAi.GetComponent<AIHunterTracking>().InSight = false;
         }

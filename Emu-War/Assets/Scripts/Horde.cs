@@ -53,7 +53,6 @@ public class Horde : MonoBehaviour
                     this.gameObject.transform.position = Vector2.MoveTowards(this.gameObject.transform.position, tempPos, _speed * Time.deltaTime);
                 }
                 //transform.position = tempPos;
-                hordeSize = player.hordeSize;
             }
             if (isDead == true)
             {
