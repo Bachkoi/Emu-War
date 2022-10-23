@@ -4,23 +4,34 @@ using UnityEngine;
 
 public class HunterVision : MonoBehaviour
 {
-    #region fields
+    #region Fields
     [SerializeField]
     private GameObject _hunterAi;
     private int _emusInRange = 0;
+    private GameObject _playerGameObject;
+    private bool _trackingPlayerPosition;
     #endregion
 
+    private void Start()
+    {
+        _playerGameObject = GameObject.FindGameObjectsWithTag("Emu")[0];
+        _trackingPlayerPosition = true;
+    }
     public void Update()
     {
         if(_emusInRange > 0)
         {
-            _hunterAi.GetComponent<AIHunterTracking>().InSight = true;
-            //Debug.Log("Hey in here!");
+            if(_trackingPlayerPosition)
+            {
+                _hunterAi.GetComponent<AIHunterTracking>().InSight = true;
+                _hunterAi.GetComponent<AIHunterTracking>().PlayerPositionAtTimeCaught = _playerGameObject.transform.position;
+                _trackingPlayerPosition = false;
+            }
         }
         else
         {
             _hunterAi.GetComponent<AIHunterTracking>().InSight = false;
-            //Debug.Log("Not Here :(");
+            _trackingPlayerPosition = true;
         }
     }
 
