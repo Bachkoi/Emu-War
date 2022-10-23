@@ -11,7 +11,7 @@ public class AIHunterShooting : MonoBehaviour
 
     private ObjectPooler _objPool;
     private float _counter;
-    
+    private bool fireCycle;
     #region Burst Fire
     private float _burstCounter;
     private float _burstCooldown;
@@ -26,11 +26,12 @@ public class AIHunterShooting : MonoBehaviour
         canFire = false;
         _burstCounter = 5;
         _burstCooldown = 0;
+        fireCycle = false;
     }
     // Update is called once per frame
     void Update()
     {
-        if(canFire)
+        if(canFire || fireCycle)
         {
             FireGun();
         }
@@ -41,6 +42,7 @@ public class AIHunterShooting : MonoBehaviour
         //If the rate of fire is done
         if (_counter > _rateOfFire)
         {
+            fireCycle = true;
             //If there are still bursts shots left
             if(_burstCounter > 0)
             {
@@ -70,6 +72,7 @@ public class AIHunterShooting : MonoBehaviour
         else
         {
             _counter += Time.deltaTime;
+            fireCycle = false;
         }
 
     }

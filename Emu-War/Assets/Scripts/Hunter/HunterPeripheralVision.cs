@@ -15,12 +15,12 @@ public class HunterPeripheralVision : MonoBehaviour
         if (_emusInRange > 0)
         {
             _hunterAi.GetComponent<AIHunterTracking>().InPeripheral = true;
-            Debug.Log("Hey in here!");
+            //Debug.Log("Hey in here!");
         }
         else
         {
             _hunterAi.GetComponent<AIHunterTracking>().InPeripheral = false;
-            Debug.Log("Not Here :(");
+            //Debug.Log("Not Here :(");
         }
     }
 

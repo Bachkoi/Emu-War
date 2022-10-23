@@ -10,6 +10,8 @@ public class AIHunterTracking : MonoBehaviour
     public float hunterSpeed;
     [SerializeField]
     private float _rotationSpeed;
+    private GameObject _playerGameObject;
+    private bool _caughtInPeripheral;
     #region Patrol Points
     [SerializeField]
     private List<Vector3> _spots;
@@ -44,6 +46,8 @@ public class AIHunterTracking : MonoBehaviour
         _hotpoints.Enqueue(_currentNode);
         _rotateToPoint = true;
         _rotateTimer = 0;
+        _playerGameObject = GameObject.FindGameObjectsWithTag("Emu")[0];
+        _caughtInPeripheral = false;
     }
 
     // Update is called once per frame
@@ -60,6 +64,12 @@ public class AIHunterTracking : MonoBehaviour
             //gameObject.GetComponent<SpriteRenderer>().color = Color.red;
             gameObject.GetComponent<AIHunterShooting>().canFire = true;
         }
+        if(inPeripheral)
+        {
+            _caughtInPeripheral = true;
+            RotateHunter(_playerGameObject.transform.position);
+            gameObject.GetComponent<AIHunterShooting>().canFire = true;
+        }
         else
         {
             Patrol();
@@ -71,15 +81,16 @@ public class AIHunterTracking : MonoBehaviour
     {
         gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
 
-        if (_rotateToPoint)
+        if (_rotateToPoint || _caughtInPeripheral)
         {
             _rotateTimer++;
 
             //logic for later STILL IN PROGRESS
-            float DotProduct = RotateHunter();
+            float DotProduct = RotateHunter(_currentNode);
             if (_rotateTimer >= 360)
             {
                 _rotateToPoint = false;
+                _caughtInPeripheral = false;
                 _rotateTimer = 0;
                 //transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.x, transform.eulerAngles.z + 90);
             }
@@ -108,9 +119,9 @@ public class AIHunterTracking : MonoBehaviour
     }
 
     //Rotate player towards waypoint
-    public float RotateHunter()
+    public float RotateHunter(Vector3 focalPoint)
     {
-        Vector3 targetOfRotation = _currentNode - transform.position;
+        Vector3 targetOfRotation = focalPoint - transform.position;
         float angle = Mathf.Atan2(targetOfRotation.y, targetOfRotation.x) * Mathf.Rad2Deg;
         Quaternion rotationQuaternion = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotationQuaternion, _rotationSpeed * Time.deltaTime);
