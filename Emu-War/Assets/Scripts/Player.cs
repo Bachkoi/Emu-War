@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -10,10 +11,15 @@ public class Player : MonoBehaviour
     public int wheat;
     public int hordeSize;
     public float speed;
+    private float _speedBuffCooldown;
+    private float _speedBuffTimer;
+    private bool _speedBuffReady;
+    private bool _speedBuffActive;
     private Animator _anim;
     [SerializeReference] private TextMeshProUGUI _healthText;
     [SerializeReference] private TextMeshProUGUI _wheatText;
     [SerializeReference] private TextMeshProUGUI _hordeSizeText;
+    [SerializeReference] private Image _speedAbilityProgress;
     #endregion
 
     #region Methods
@@ -26,6 +32,10 @@ public class Player : MonoBehaviour
         wheat = 0;
         hordeSize = 0;
         _anim = GetComponent<Animator>();
+        _speedBuffCooldown = 5;
+        _speedBuffTimer = 5;
+        _speedBuffReady = false;
+        _speedBuffActive = false;
     }
 
     /// <summary>
@@ -33,6 +43,12 @@ public class Player : MonoBehaviour
     /// </summary>
     void Update()
     {
+        // Update ability timers
+        UpdateAbilityTimers();
+
+        // Use ability
+        UseAbility();
+
         // Movement
         FollowMouse();
 
@@ -40,6 +56,7 @@ public class Player : MonoBehaviour
         _healthText.text = $"Health: {health}";
         _wheatText.text = $"Wheat: {wheat} / 33";
         _hordeSizeText.text = $"Horde Size: {hordeSize}";
+        _speedAbilityProgress.fillAmount = 1 - (_speedBuffCooldown / 5);
     }
 
     /// <summary>
@@ -65,6 +82,71 @@ public class Player : MonoBehaviour
         else
         {
             _anim.SetBool("isWalking", false);
+        }
+    }
+
+    /// <summary>
+    /// Updates all ability timers
+    /// </summary>
+    private void UpdateAbilityTimers()
+    {
+        #region SpeedBuff
+        // If the buff is on cooldown
+        if (_speedBuffCooldown > 0)
+        {
+            // Reduce the time from the cooldown
+            _speedBuffCooldown -= Time.deltaTime;
+        }
+        // If the buff is not on cooldown and not in use
+        else if (_speedBuffCooldown <= 0 && !_speedBuffActive)
+        {
+            // Set state to ready
+            _speedBuffReady = true;
+        }
+
+        // If the buff is active
+        if (_speedBuffActive)
+        {
+            // Reduce active timer
+            _speedBuffTimer -= Time.deltaTime;
+
+            // If the timer falls below 0s remaining
+            if (_speedBuffTimer <= 0)
+            {
+                // Reset the speed 
+                speed = 5;
+
+                // Reset the timers
+                _speedBuffCooldown = 5;
+                _speedBuffTimer = 5;
+
+                // Set the buff's active state
+                _speedBuffActive = false;
+
+                // Reset progress color
+                _speedAbilityProgress.color = Color.white;
+            }
+        }
+        #endregion
+    }
+
+    /// <summary>
+    /// Method that handles various ability use
+    /// </summary>
+    private void UseAbility()
+    {
+        // Speed buff
+        if (Input.GetKeyDown(KeyCode.Alpha1) && _speedBuffReady)
+        {
+            // Set the speed
+            speed = 10;
+
+            // Set buff states
+            _speedBuffReady = false;
+            _speedBuffActive = true;
+
+            // Change the progress color
+            _speedAbilityProgress.color = Color.yellow;
         }
     }
     #endregion
