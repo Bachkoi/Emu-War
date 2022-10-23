@@ -21,17 +21,12 @@ public class HunterVision : MonoBehaviour
     {
         if(_emusInRange > 0)
         {
-            if(_trackingPlayerPosition)
-            {
-                _hunterAi.GetComponent<AIHunterTracking>().InSight = true;
-                _hunterAi.GetComponent<AIHunterTracking>().PlayerPositionAtTimeCaught = _playerGameObject.transform.position;
-                _trackingPlayerPosition = false;
-            }
+            _hunterAi.GetComponent<AIHunterTracking>().InSight = true;
+            _hunterAi.GetComponent<AIHunterTracking>().PlayerPositionAtTimeCaught = _playerGameObject.transform.position;
         }
         else
         {
             _hunterAi.GetComponent<AIHunterTracking>().InSight = false;
-            _trackingPlayerPosition = true;
         }
     }
 

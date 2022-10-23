@@ -20,17 +20,15 @@ public class HunterPeripheralVision : MonoBehaviour
     {
         if (_emusInRange > 0)
         {
-            if (_trackingPlayerPosition)
-            {
-                _hunterAi.GetComponent<AIHunterTracking>().InPeripheral = true;
-                _hunterAi.GetComponent<AIHunterTracking>().PlayerPositionAtTimeCaught = _playerGameObject.transform.position;
-                _trackingPlayerPosition = false;
-            }
+
+            _hunterAi.GetComponent<AIHunterTracking>().InPeripheral = true;
+            _hunterAi.GetComponent<AIHunterTracking>().PlayerPositionAtTimeCaught = _playerGameObject.transform.position;
+
+
         }
         else
         {
             _hunterAi.GetComponent<AIHunterTracking>().InPeripheral = false;
-            _trackingPlayerPosition = true;
         }
     }
 

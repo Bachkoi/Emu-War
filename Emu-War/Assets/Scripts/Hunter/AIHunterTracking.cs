@@ -68,18 +68,25 @@ public class AIHunterTracking : MonoBehaviour
         if (inSight)
         {
             _playerCaughtInSight = true;
-            //_playerPositionAtTimeCaught = _playerGameObject.transform.position;
-            RotateHunter(_playerPositionAtTimeCaught);
+            if (gameObject.GetComponent<AIHunterShooting>().FireCycle == false)
+            {
+                _playerPositionAtTimeCaught = _playerGameObject.transform.position;
+                RotateHunter(_playerPositionAtTimeCaught);
+                Debug.Log("HAHAHA");
+            }
             gameObject.GetComponent<AIHunterShooting>().canFire = true;
         }
         else if(inPeripheral)
         {
             _playerCaughtInSight = true;
-            //_playerPositionAtTimeCaught = _playerGameObject.transform.position;
-            RotateHunter(_playerPositionAtTimeCaught);
+            if (gameObject.GetComponent<AIHunterShooting>().FireCycle == false)
+            {
+                _playerPositionAtTimeCaught = _playerGameObject.transform.position;
+                RotateHunter(_playerPositionAtTimeCaught);
+            }
             gameObject.GetComponent<AIHunterShooting>().canFire = true;
         }
-        else
+        else if(gameObject.GetComponent<AIHunterShooting>().FireCycle == false)
         {
             Patrol();
             gameObject.GetComponent<AIHunterShooting>().canFire = false;
