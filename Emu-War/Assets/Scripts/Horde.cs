@@ -52,7 +52,6 @@ public class Horde : MonoBehaviour
                 {
                     this.gameObject.transform.position = Vector2.MoveTowards(this.gameObject.transform.position, tempPos, _speed * Time.deltaTime);
                 }
-                //transform.position = tempPos;
             }
             if (isDead == true)
             {
@@ -81,12 +80,8 @@ public class Horde : MonoBehaviour
         gap.x = (float)((rng.Next(40, 100)) / 100.0f) * (_followRadius * MathF.Cos(theta));
         gap.y = (float)((rng.Next(40, 100)) / 100.0f) * (_followRadius * MathF.Sin(theta));
 
-        //gap.x = (float)((rng.Next(40,100)) / 100.0f) * (_followRadius * (float)Math.Cos(theta));
-        //gap.y = (float)((rng.Next(40,100)) / 100.0f) * (_followRadius * (float)Math.Sin(theta));
-
         tempPos.x = player.transform.position.x + gap.x;
         tempPos.y = player.transform.position.y + gap.y;
-        //transform.position = tempPos;
         this.gameObject.transform.position = Vector2.MoveTowards(this.gameObject.transform.position, tempPos, _speed * Time.deltaTime);
     }
 
@@ -106,7 +101,10 @@ public class Horde : MonoBehaviour
             case "Horde":
                 if(follow == false && isThrown == false)
                 {
-                    player.EmuCollect(this.gameObject);
+                    if(collision.gameObject.GetComponent<Horde>().isThrown == false)
+                    {
+                        player.EmuCollect(this.gameObject);
+                    }
                 }
                 break;
 
@@ -118,7 +116,8 @@ public class Horde : MonoBehaviour
                 break;
 
             case "Obstacle":
-                if(follow == true)
+            case "Wall":
+                if (follow == true)
                 {
                     this.gameObject.transform.position = Vector2.MoveTowards(this.gameObject.transform.position, player.transform.position, _speed * Time.deltaTime);
                     inWall = true;
@@ -126,17 +125,9 @@ public class Horde : MonoBehaviour
                 }
                 else
                 {
-                    this.gameObject.transform.position = Vector2.MoveTowards(this.gameObject.transform.position, collision.gameObject.transform.position, _speed * Time.deltaTime);
+                    this.gameObject.transform.position = Vector2.MoveTowards(this.gameObject.transform.position, collision.transform.position, _speed * Time.deltaTime);
                     _speed = 0f;
-                }
-                break;
-
-            case "Wall":
-                if (follow == true)
-                {
-                    this.gameObject.transform.position = Vector2.MoveTowards(this.gameObject.transform.position, player.transform.position, _speed * Time.deltaTime);
-                    inWall = true;
-                    // NEED TO CALL THIS IN UPDATE TOO
+                    //isThrown = false;
                 }
                 break;
         }
@@ -145,12 +136,13 @@ public class Horde : MonoBehaviour
 
     public void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.tag == "Obstacle")
+        if(collision.tag == "Obstacle" || collision.tag == "Wall")
         {
             inWall = false;
             if(isThrown == true)
             {
                 isThrown = false;
+                follow = false;
             }
         }
     }

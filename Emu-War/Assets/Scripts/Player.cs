@@ -15,7 +15,6 @@ public class Player : MonoBehaviour
     public Queue<GameObject> hordeQueue;
     public List<GameObject> horde;
     public float followRadius = 1.0f;
-    public int emuCount = 0;
     private Animator _anim;
     [SerializeReference] private TextMeshProUGUI _healthText;
     [SerializeReference] private TextMeshProUGUI _wheatText;
@@ -42,9 +41,9 @@ public class Player : MonoBehaviour
     {
         // Movement
         FollowMouse();
-
-        if (Input.GetKeyDown(KeyCode.Space)){
-            if(hordeSize > 0)
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (hordeSize > 0)
             {
                 HordeShoot();
             }
@@ -53,6 +52,16 @@ public class Player : MonoBehaviour
                 // Tell player they don't have a horde to shoot.
             }
         }
+        //if (Input.GetKeyDown(KeyCode.Space)){
+        //    if(hordeSize > 0)
+        //    {
+        //        HordeShoot();
+        //    }
+        //    else
+        //    {
+        //        // Tell player they don't have a horde to shoot.
+        //    }
+        //}
 
         // Update the UI
         _healthText.text = $"Health: {health}";
@@ -72,7 +81,6 @@ public class Player : MonoBehaviour
         // Check if the mouse is inside the player
         bool mouseInsidePlayer = GetComponent<Collider2D>().bounds.Contains(targetPos);
 
-        // FOR Sprint 4, have the horde utilize the FollowMouse method to make it more fluid.
 
         // If it isn't, move the player
         if (!mouseInsidePlayer)
@@ -108,6 +116,7 @@ public class Player : MonoBehaviour
         followRadius += 0.1f;
         HordeReposition();
     }
+
     /// <summary>
     /// HordeDeath Method
     /// </summary>
@@ -137,16 +146,12 @@ public class Player : MonoBehaviour
         hordeQueue.Clear();
         for (int i = 0; i < tempArr.Length; i++)
         {
-            //horde[i].GetComponent<Horde>().FollowRadius = followRadius;
-            //horde[i].GetComponent<Horde>().Reposition((float)i + 1 * (360.0f / horde.Count));
-
             // Attempt with Queue
             tempArr[i].GetComponent<Horde>().FollowRadius = followRadius;
             tempArr[i].GetComponent<Horde>().Reposition(((float)i + 1) * (360.0f / tempArr.Length));
             hordeQueue.Enqueue(tempArr[i]);
         }
         hordeSize = hordeQueue.Count;
-        emuCount = hordeQueue.Count;
     }
 
     /// <summary>
