@@ -60,6 +60,7 @@ public class Horde : MonoBehaviour
             if(isThrown == true)
             {
                 this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, throwPos, _speed * Time.deltaTime);
+                wallPos = this.gameObject.transform.position;
                 if(this.gameObject.transform.position == throwPos)
                 {
                     isThrown = false;
@@ -116,6 +117,22 @@ public class Horde : MonoBehaviour
                 break;
 
             case "Obstacle":
+                if (follow == true)
+                {
+                    this.gameObject.transform.position = Vector2.MoveTowards(this.gameObject.transform.position, player.transform.position, _speed * Time.deltaTime);
+                    inWall = true;
+                    // NEED TO CALL THIS IN UPDATE TOO
+                }
+                else
+                {
+                    throwPos = collision.transform.localPosition;
+                    this.gameObject.transform.position = Vector2.MoveTowards(this.gameObject.transform.position, wallPos, _speed * Time.deltaTime);
+                    //throwPos = this.gameObject.transform.position;
+                    //_speed = 0f;
+                    isThrown = false;
+                }
+                break;
+
             case "Wall":
                 if (follow == true)
                 {
@@ -125,9 +142,11 @@ public class Horde : MonoBehaviour
                 }
                 else
                 {
-                    this.gameObject.transform.position = Vector2.MoveTowards(this.gameObject.transform.position, collision.transform.position, _speed * Time.deltaTime);
-                    _speed = 0f;
-                    //isThrown = false;
+                    //throwPos = collision.transform.localPosition;
+                    this.gameObject.transform.position = Vector2.MoveTowards(this.gameObject.transform.position, wallPos, _speed * Time.deltaTime);
+                   //throwPos = collision.transform.localPosition;
+                    //_speed = 0f;
+                    isThrown = false;
                 }
                 break;
         }
