@@ -200,7 +200,7 @@ public class Player : MonoBehaviour
         thrownEmu.transform.position = Vector3.MoveTowards(thrownEmu.transform.position, targetPos, speed * Time.deltaTime);
         thrownEmu.GetComponent<Horde>().throwPos = targetPos;
         HordeReposition();
-
+    }
     /// <summary>
     /// Updates all ability timers
     /// </summary>
