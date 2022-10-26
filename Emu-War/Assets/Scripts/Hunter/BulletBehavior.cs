@@ -8,6 +8,7 @@ public class BulletBehavior : MonoBehaviour
     [SerializeField]
     private float _bulletSpeed;
     private int _lifetimeCount;
+    public Player player;
     #endregion Fields
 
     private void Start()
@@ -33,6 +34,12 @@ public class BulletBehavior : MonoBehaviour
         if (collision.gameObject.CompareTag("Emu"))
         {
             collision.gameObject.GetComponent<Player>().health -= 20;
+            gameObject.SetActive(false);
+        }
+
+        if (collision.gameObject.CompareTag("Horde"))
+        {
+            collision.gameObject.GetComponent<Horde>().isDead = true;
             gameObject.SetActive(false);
         }
 

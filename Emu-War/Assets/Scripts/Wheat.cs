@@ -6,6 +6,7 @@ public class Wheat : MonoBehaviour
 {
     #region Fields
     public float health;
+    public Player player;
     #endregion
 
     #region Methods
@@ -18,27 +19,32 @@ public class Wheat : MonoBehaviour
         health = 100;
     }
 
+    private void Update()
+    {
+        // If there's no remaining health
+        if (health <= 0)
+        {
+            // Count collected wheat
+            player.wheat++;
+
+            // Destroy the wheat
+            Destroy(gameObject);
+        }
+
+    }
+
     /// <summary>
     /// Checks Triggers when GameObjects collide with Wheat.
     /// </summary>
     /// <param name="collision">The collision occurring</param>
     private void OnTriggerStay2D(Collider2D collision)
     {
-        // If the Wheat collides with an emu...
-        if (collision.gameObject.CompareTag("Emu"))
-        {
+        if (collision.gameObject.CompareTag("Emu")){
             // Reduce wheat health based on number of Emus
-            health -= 1 + (collision.gameObject.GetComponent<Player>().hordeSize * 0.1f);
-
-            // If there's no remaining health
-            if (health <= 0)
-            {
-                // Count collected wheat
-                collision.gameObject.GetComponent<Player>().wheat++;
-
-                // Destroy the wheat
-                Destroy(gameObject);
-            }
+            health -= 1 + (player.hordeSize * 0.025f);
+        }
+        else if (collision.gameObject.CompareTag("Horde")){
+            health -= 0.1f + (player.hordeSize * 0.025f);
         }
     }
     #endregion
