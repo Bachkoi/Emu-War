@@ -32,7 +32,7 @@ public class HunterVision : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Emu" || collision.gameObject.tag == "Horde")
+        if(collision.gameObject.tag == "Emu")// || collision.gameObject.tag == "Horde")
         {
             _emusInRange++;
         }
@@ -40,7 +40,7 @@ public class HunterVision : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Emu" || collision.gameObject.tag == "Horde")
+        if (collision.gameObject.tag == "Emu")// || collision.gameObject.tag == "Horde")
         {
            _emusInRange--;
         }

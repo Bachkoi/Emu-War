@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         // TODO: Create LevelManager to handle wheat in the level/win conditions
-        _amountOfWheat = 33; // temporary assignment for CollisionTest scene
+        _amountOfWheat = 11; // temporary assignment for CollisionTest scene
 
         _player = _playerObject.GetComponent<Player>();
     }

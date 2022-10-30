@@ -30,6 +30,7 @@ public class BulletBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log(collision.gameObject.tag);
         // If the bullet collides with an emu...
         if (collision.gameObject.CompareTag("Emu"))
         {
@@ -37,16 +38,18 @@ public class BulletBehavior : MonoBehaviour
             gameObject.SetActive(false);
         }
 
-        if (collision.gameObject.CompareTag("Horde"))
+        else if (collision.gameObject.CompareTag("Horde"))
         {
             collision.gameObject.GetComponent<Horde>().isDead = true;
             gameObject.SetActive(false);
         }
 
         // If the bullet collides with an wall...
-        if (collision.gameObject.CompareTag("Wall"))
+        else if (collision.gameObject.CompareTag("Wall"))
         {
             gameObject.SetActive(false);
         }
     }
+
+
 }
