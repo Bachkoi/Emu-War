@@ -6,9 +6,13 @@ public class AIHunterTracking : MonoBehaviour
 {
     #region Fields
     public bool inSight;
+    public bool inPeripheral;
     public float hunterSpeed;
     [SerializeField]
     private float _rotationSpeed;
+    private GameObject _playerGameObject;
+    private Vector3 _playerPositionAtTimeCaught;
+    private bool _playerCaughtInSight;
     #region Patrol Points
     [SerializeField]
     private List<Vector3> _spots;
@@ -28,6 +32,15 @@ public class AIHunterTracking : MonoBehaviour
         get { return inSight; }
         set { inSight = value; }
     }
+    public bool InPeripheral
+    {
+        get { return inPeripheral; }
+        set { inPeripheral = value; }
+    }
+    public Vector3 PlayerPositionAtTimeCaught
+    {
+        set { _playerPositionAtTimeCaught = value; }
+    }
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -38,6 +51,9 @@ public class AIHunterTracking : MonoBehaviour
         _hotpoints.Enqueue(_currentNode);
         _rotateToPoint = true;
         _rotateTimer = 0;
+        _playerGameObject = GameObject.FindGameObjectsWithTag("Emu")[0];
+        _playerPositionAtTimeCaught = Vector3.zero;
+        _playerCaughtInSight = false;
     }
 
     // Update is called once per frame
@@ -51,10 +67,26 @@ public class AIHunterTracking : MonoBehaviour
         //If Emu is in sight, shoot, otherwise patrol
         if (inSight)
         {
-            //gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+            _playerCaughtInSight = true;
+            if (gameObject.GetComponent<AIHunterShooting>().FireCycle == false)
+            {
+                _playerPositionAtTimeCaught = _playerGameObject.transform.position;
+                RotateHunter(_playerPositionAtTimeCaught);
+                //Debug.Log("HAHAHA");
+            }
             gameObject.GetComponent<AIHunterShooting>().canFire = true;
         }
-        else
+        else if(inPeripheral)
+        {
+            _playerCaughtInSight = true;
+            if (gameObject.GetComponent<AIHunterShooting>().FireCycle == false)
+            {
+                _playerPositionAtTimeCaught = _playerGameObject.transform.position;
+                RotateHunter(_playerPositionAtTimeCaught);
+            }
+            gameObject.GetComponent<AIHunterShooting>().canFire = true;
+        }
+        else if(gameObject.GetComponent<AIHunterShooting>().FireCycle == false)
         {
             Patrol();
             gameObject.GetComponent<AIHunterShooting>().canFire = false;
@@ -65,15 +97,16 @@ public class AIHunterTracking : MonoBehaviour
     {
         gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
 
-        if (_rotateToPoint)
+        if (_rotateToPoint || _playerCaughtInSight)
         {
             _rotateTimer++;
 
             //logic for later STILL IN PROGRESS
-            float DotProduct = RotateHunter();
+            float DotProduct = RotateHunter(_currentNode);
             if (_rotateTimer >= 360)
             {
                 _rotateToPoint = false;
+                _playerCaughtInSight = false;
                 _rotateTimer = 0;
                 //transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.x, transform.eulerAngles.z + 90);
             }
@@ -102,9 +135,9 @@ public class AIHunterTracking : MonoBehaviour
     }
 
     //Rotate player towards waypoint
-    public float RotateHunter()
+    public float RotateHunter(Vector3 focalPoint)
     {
-        Vector3 targetOfRotation = _currentNode - transform.position;
+        Vector3 targetOfRotation = focalPoint - transform.position;
         float angle = Mathf.Atan2(targetOfRotation.y, targetOfRotation.x) * Mathf.Rad2Deg;
         Quaternion rotationQuaternion = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotationQuaternion, _rotationSpeed * Time.deltaTime);
