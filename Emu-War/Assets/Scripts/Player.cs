@@ -87,7 +87,7 @@ public class Player : MonoBehaviour
         {
             foreach(GameObject obj in horde)
             {
-                //obj.GetComponent<Animator>().SetBool("isWalking", true); // Set horde anim to be true.
+                obj.GetComponent<Animator>().SetBool("isWalking", true); // Set horde anim to be true.
             }
             _anim.SetBool("isWalking", true);
 
@@ -98,7 +98,7 @@ public class Player : MonoBehaviour
         {
             foreach (GameObject obj in horde)
             {
-                //obj.GetComponent<Animator>().SetBool("isWalking", false); // Set the horde anim to be false. COMMENTED UNTIL WE HAVE THE ANIMATIONS WORKING
+                obj.GetComponent<Animator>().SetBool("isWalking", false); // Set the horde anim to be false. COMMENTED UNTIL WE HAVE THE ANIMATIONS WORKING
             }
             _anim.SetBool("isWalking", false);
         }
