@@ -72,7 +72,7 @@ public class AIHunterTracking : MonoBehaviour
             {
                 _playerPositionAtTimeCaught = _playerGameObject.transform.position;
                 RotateHunter(_playerPositionAtTimeCaught);
-                Debug.Log("HAHAHA");
+                //Debug.Log("HAHAHA");
             }
             gameObject.GetComponent<AIHunterShooting>().canFire = true;
         }

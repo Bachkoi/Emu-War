@@ -92,7 +92,7 @@ public class Player : MonoBehaviour
 
         // Update the UI
         _healthText.text = $"Health: {health}";
-        _wheatText.text = $"Wheat: {wheat} / 33";
+        _wheatText.text = $"Wheat: {wheat} / 11";
         _hordeSizeText.text = $"Horde Size: {hordeSize}";
         _speedAbilityProgress.fillAmount = 1 - (_speedBuffCooldown / 5);
         _wheatAbilityProgress.fillAmount = 1 - (_wheatSenseCooldown / 5);
