@@ -10,15 +10,18 @@ public class HunterVision : MonoBehaviour
     private int _emusInRange = 0;
     private GameObject _playerGameObject;
     private bool _trackingPlayerPosition;
+
     #endregion
 
     private void Start()
     {
         _playerGameObject = GameObject.FindGameObjectsWithTag("Emu")[0];
         _trackingPlayerPosition = true;
+
     }
     public void Update()
     {
+
         if(_emusInRange > 0)
         {
             _hunterAi.GetComponent<AIHunterTracking>().InSight = true;
