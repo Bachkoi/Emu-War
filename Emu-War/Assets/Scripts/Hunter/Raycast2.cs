@@ -4,15 +4,36 @@ using UnityEngine;
 
 public class Raycast2 : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    #region Fields
+    public float viewRadius;
+    public float viewAngle;
 
-    // Update is called once per frame
-    void Update()
+    public LayerMask targetMask;
+    public LayerMask obstacleMask;
+
+    public float meshResolution;
+    #endregion Fields
+
+    public void Update()
     {
-        
+        DrawFieldOfView();
+    }
+    void DrawFieldOfView()
+    {
+        int rayCount = Mathf.RoundToInt(viewAngle * meshResolution);
+        float stepAngleSize = viewAngle / rayCount;
+
+        for(int i = 0; i < rayCount; i++)
+        {
+            float angle = transform.eulerAngles.z - viewAngle/2 + stepAngleSize*i;
+            //Debug.Log("Looking at " + (transform.position + DirFromAngle(angle)));
+           // Debug.DrawLine(transform.position, transform.position + DirFromAngle(angle) * viewRadius, Color.green);
+        }
+    }
+    
+    public Vector3 DirFromAngle (float angleInDegrees)
+    {
+        float angleInRadians = angleInDegrees * Mathf.Deg2Rad;
+        return new Vector3(Mathf.Sin(angleInRadians), Mathf.Cos(angleInRadians), 0);
     }
 }

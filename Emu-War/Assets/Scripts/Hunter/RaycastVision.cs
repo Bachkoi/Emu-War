@@ -22,15 +22,15 @@ public class RaycastVision : MonoBehaviour
         _origin = Vector3.zero;
         _fov = 60f;
         _startingAngle = 0;
-        GetComponent<MeshFilter>().mesh = _visionMesh;
+        gameObject.GetComponent<MeshFilter>().mesh = _visionMesh;
         CreateMesh();
     }
 
     // Update is called once per frame
     private void Update()
     {
-        //_startingAngle = this.gameObject.GetComponentInParent<Transform>().rotation.eulerAngles.z +_fov / 2f + 90;
-        _startingAngle = _fov - this.gameObject.GetComponentInParent<Transform>().rotation.eulerAngles.z / 2f;
+        _startingAngle = this.gameObject.GetComponentInParent<Transform>().rotation.eulerAngles.z +_fov / 2f + 90;
+        //_startingAngle = _fov - this.gameObject.GetComponentInParent<Transform>().rotation.eulerAngles.z / 2f;
         //_origin = this.gameObject.GetComponentInParent<Transform>().position;
     }
     void LateUpdate()
