@@ -21,21 +21,29 @@ public class RaycastVision : MonoBehaviour
         _visionMesh = new Mesh();
         _origin = Vector3.zero;
         _fov = 60f;
+        _startingAngle = 0;
         GetComponent<MeshFilter>().mesh = _visionMesh;
         CreateMesh();
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        CreateMesh();
+        _startingAngle = this.gameObject.GetComponentInParent<Transform>().rotation.eulerAngles.z  + _fov / 2f;
+        //_origin = this.gameObject.GetComponentInParent<Transform>().position;
+    }
+    void LateUpdate()
+    {
 
+        Debug.Log(_startingAngle + "    " + this.gameObject.GetComponentInParent<Transform>().rotation.eulerAngles.z);
+        CreateMesh();
+        
     }
 
     private void CreateMesh()
     {
         int rayCount = 50;
-        float angle = 0f;
+        float angle = _startingAngle;
         float angleIncrement = _fov / rayCount;
         float viewDistance = 10f;
 
@@ -43,11 +51,12 @@ public class RaycastVision : MonoBehaviour
         Vector2[] uv = new Vector2[vertices.Length];
         int[] triangles = new int[rayCount * 3];
 
-        vertices[0] = _origin;
 
         int vertexIndex = 1;
         int triangleIndex = 0;
-        for(int i = 0; i <= rayCount; i++)
+        vertices[0] = _origin;
+
+        for (int i = 0; i <= rayCount; i++)
         {
             Vector3 vertex;
             RaycastHit2D raycastHit2D = Physics2D.Raycast(_origin, GetVectorFromAngle(angle), viewDistance,_layerMask);
@@ -60,7 +69,9 @@ public class RaycastVision : MonoBehaviour
             {
                 vertex = raycastHit2D.point;
             }
+
             vertices[vertexIndex] = vertex;
+
             if (i > 0)
             {
                 triangles[triangleIndex] = 0;
@@ -71,7 +82,7 @@ public class RaycastVision : MonoBehaviour
             }
 
             vertexIndex++;
-            angle -= angleIncrement;
+            angle += angleIncrement;
         }
 
 
@@ -110,6 +121,8 @@ public class RaycastVision : MonoBehaviour
 
     public void SetAimDirection(Vector3 aimDirection)
     {
-        _startingAngle = GetAngleFromVector(aimDirection) - _fov/2f;
+        _startingAngle = GetAngleFromVector(aimDirection) + (_fov/2f);
     }
+
+
 }

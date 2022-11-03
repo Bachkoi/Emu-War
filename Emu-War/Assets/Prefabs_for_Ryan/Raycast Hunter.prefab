@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8488872797398500432}
   - component: {fileID: 5915193142669274159}
   - component: {fileID: 8230344258661043751}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 5178120510157864176}
   - component: {fileID: 5178120510157864179}
   - component: {fileID: 4804090808942927586}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Raycast Hunter
   m_TagString: Hunter
   m_Icon: {fileID: 0}
@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 551659139654902018}
   - component: {fileID: 8858622464542835774}
   - component: {fileID: 2981479826127093344}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
