@@ -29,7 +29,8 @@ public class RaycastVision : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        _startingAngle = this.gameObject.GetComponentInParent<Transform>().rotation.eulerAngles.z  + _fov / 2f;
+        //_startingAngle = this.gameObject.GetComponentInParent<Transform>().rotation.eulerAngles.z +_fov / 2f + 90;
+        _startingAngle = _fov - this.gameObject.GetComponentInParent<Transform>().rotation.eulerAngles.z / 2f;
         //_origin = this.gameObject.GetComponentInParent<Transform>().position;
     }
     void LateUpdate()
@@ -42,12 +43,12 @@ public class RaycastVision : MonoBehaviour
 
     private void CreateMesh()
     {
-        int rayCount = 50;
+        int rayCount = 20;
         float angle = _startingAngle;
         float angleIncrement = _fov / rayCount;
         float viewDistance = 10f;
 
-        Vector3[] vertices = new Vector3[rayCount + 2];
+        Vector3[] vertices = new Vector3[rayCount + 1 + 1];
         Vector2[] uv = new Vector2[vertices.Length];
         int[] triangles = new int[rayCount * 3];
 
@@ -82,13 +83,10 @@ public class RaycastVision : MonoBehaviour
             }
 
             vertexIndex++;
-            angle += angleIncrement;
+            angle -= angleIncrement;
         }
 
 
-        triangles[0] = 0;
-        triangles[1] = 1;
-        triangles[2] = 2;
 
         _visionMesh.vertices = vertices;
         _visionMesh.uv = uv;
@@ -97,7 +95,7 @@ public class RaycastVision : MonoBehaviour
 
     public Vector3 GetVectorFromAngle(float angle)
     {
-        float angleRad = angle * (Mathf.PI / 180f);
+        float angleRad = angle * Mathf.Deg2Rad;
         return new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad));
     }
 
