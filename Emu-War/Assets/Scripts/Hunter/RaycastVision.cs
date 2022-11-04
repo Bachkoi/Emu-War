@@ -64,7 +64,7 @@ public class RaycastVision : MonoBehaviour
 
             if(raycastHit2D.collider == null )
             {
-                vertex = _origin + GetVectorFromAngle(angle) * viewDistance;
+                vertex = _origin + (GetVectorFromAngle(angle) * viewDistance);
             }
             else
             {
@@ -83,7 +83,7 @@ public class RaycastVision : MonoBehaviour
             }
 
             vertexIndex++;
-            angle -= angleIncrement;
+            angle -= angleIncrement/2;
         }
 
 
@@ -93,6 +93,10 @@ public class RaycastVision : MonoBehaviour
         _visionMesh.triangles = triangles;
     }
 
+    void checkRayCast()
+    {
+
+    }
     public Vector3 GetVectorFromAngle(float angle)
     {
         float angleRad = angle * Mathf.Deg2Rad;
