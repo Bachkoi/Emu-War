@@ -11,6 +11,9 @@ public class RaycastVision : MonoBehaviour
     private Mesh _visionMesh;
     private float _startingAngle;
     private float _fov;
+    [SerializeField]
+    private GameObject _hunterAi;
+    private bool _foundTarget;
     #endregion Fields
 
     #region Properties
@@ -23,13 +26,14 @@ public class RaycastVision : MonoBehaviour
         _fov = 60f;
         _startingAngle = 0;
         gameObject.GetComponent<MeshFilter>().mesh = _visionMesh;
-        CreateMesh();
+        _foundTarget = false;
+        //CreateMesh();
     }
 
     // Update is called once per frame
     private void Update()
     {
-        _startingAngle = this.gameObject.GetComponentInParent<Transform>().rotation.eulerAngles.z +_fov / 2f + 90;
+        _startingAngle = this.gameObject.GetComponentInParent<Transform>().rotation.eulerAngles.z + _fov / 2f;// + 90;
         //_startingAngle = _fov - this.gameObject.GetComponentInParent<Transform>().rotation.eulerAngles.z / 2f;
         //_origin = this.gameObject.GetComponentInParent<Transform>().position;
     }
@@ -43,6 +47,7 @@ public class RaycastVision : MonoBehaviour
 
     private void CreateMesh()
     {
+
         int rayCount = 20;
         float angle = _startingAngle;
         float angleIncrement = _fov / rayCount;
@@ -57,6 +62,7 @@ public class RaycastVision : MonoBehaviour
         int triangleIndex = 0;
         vertices[0] = _origin;
 
+        _foundTarget = false;
         for (int i = 0; i <= rayCount; i++)
         {
             Vector3 vertex;
@@ -68,6 +74,13 @@ public class RaycastVision : MonoBehaviour
             }
             else
             {
+                if(raycastHit2D.collider.tag == "Emu")
+                {
+                    Debug.Log("Found him");
+                    _hunterAi.GetComponent<AIHunterTracking>().InSight = true;
+                    _hunterAi.GetComponent<AIHunterTracking>().PlayerPositionAtTimeCaught = raycastHit2D.collider.gameObject.transform.position;
+                    _foundTarget = true;
+                }
                 vertex = raycastHit2D.point;
             }
 
@@ -83,20 +96,20 @@ public class RaycastVision : MonoBehaviour
             }
 
             vertexIndex++;
-            angle -= angleIncrement/2;
+            angle -= angleIncrement;
         }
 
+        if (!_foundTarget)
+        {
+            _hunterAi.GetComponent<AIHunterTracking>().InSight = true;
+        }
 
-
-        _visionMesh.vertices = vertices;
-        _visionMesh.uv = uv;
-        _visionMesh.triangles = triangles;
+        //_visionMesh.vertices = vertices;
+        //_visionMesh.uv = uv;
+        //_visionMesh.triangles = triangles;
     }
 
-    void checkRayCast()
-    {
 
-    }
     public Vector3 GetVectorFromAngle(float angle)
     {
         float angleRad = angle * Mathf.Deg2Rad;
