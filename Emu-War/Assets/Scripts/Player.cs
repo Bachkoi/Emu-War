@@ -16,6 +16,9 @@ public class Player : MonoBehaviour
     public List<GameObject> horde;
     public float followRadius = 1.0f;
     private Animator _anim;
+    public float dTime;
+    public float score;
+
     [SerializeReference] private TextMeshProUGUI _healthText;
     [SerializeReference] private TextMeshProUGUI _wheatText;
     [SerializeReference] private TextMeshProUGUI _hordeSizeText;
@@ -172,6 +175,33 @@ public class Player : MonoBehaviour
         thrownEmu.GetComponent<Horde>().throwPos = targetPos;
         HordeReposition();
 
+    }
+
+
+    public float PlayerScore()
+    {
+        switch (dTime)
+        {
+            case < 120:
+                score += 5000;
+                break;
+            case <180:
+                score += 4000;
+                break;
+            case < 240:
+                score += 3000;
+                break;
+            case < 300:
+                score += 2000;
+                break;
+            case < 360:
+                score += 1000;
+                break;
+        }
+        score += (50.0f * hordeSize);
+        score += (100.0f * wheat);
+
+        return score;
     }
     #endregion
 }

@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     #region Fields
     [SerializeField] private GameObject _playerObject;
     private Player _player;
+    public Player player;
+    public GameObject playerObject;
     private int _amountOfWheat;
     #endregion
 
@@ -19,18 +21,26 @@ public class GameManager : MonoBehaviour
         _amountOfWheat = 33; // temporary assignment for CollisionTest scene
 
         _player = _playerObject.GetComponent<Player>();
+        player = playerObject.GetComponent<Player>();
+        player.score = 0.0f;
+        player.dTime = 0.0f;
+        _player.dTime = 0.0f;
     }
 
     private void Update()
     {
         if (_player.health <= 0)
         {
+            _player.score = _player.PlayerScore();
+            player.score = player.PlayerScore();
             SceneManager.LoadScene("GameOver");
         }
 
         if (_player.wheat >= _amountOfWheat)
         {
             SceneManager.LoadScene("GameOver");
+            player.dTime += Time.deltaTime;
+            _player.dTime += Time.deltaTime;
         }
     }
     #endregion
