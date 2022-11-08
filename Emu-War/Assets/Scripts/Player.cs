@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public List<GameObject> potentialEmus;
     public Queue<GameObject> hordeQueue;
     public List<GameObject> horde;
+    public bool isDead;
     public float followRadius = 1.0f;
     private Animator _anim;
     public float dTime;
@@ -180,23 +181,30 @@ public class Player : MonoBehaviour
 
     public float PlayerScore()
     {
-        switch (dTime)
+        if (score != 0)
         {
-            case < 120:
-                score += 5000;
-                break;
-            case <180:
-                score += 4000;
-                break;
-            case < 240:
-                score += 3000;
-                break;
-            case < 300:
-                score += 2000;
-                break;
-            case < 360:
-                score += 1000;
-                break;
+            return score;
+        }
+        if (!isDead)
+        {
+            switch (dTime)
+            {
+                case < 120:
+                    score += 5000;
+                    break;
+                case < 180:
+                    score += 4000;
+                    break;
+                case < 240:
+                    score += 3000;
+                    break;
+                case < 300:
+                    score += 2000;
+                    break;
+                case < 360:
+                    score += 1000;
+                    break;
+            }
         }
         score += (50.0f * hordeSize);
         score += (100.0f * wheat);
