@@ -70,7 +70,6 @@ public class AIHunterTracking : MonoBehaviour
             _playerCaughtInSight = true;
             if (gameObject.GetComponent<AIHunterShooting>().FireCycle == false)
             {
-                _playerPositionAtTimeCaught = _playerGameObject.transform.position;
                 RotateHunter(_playerPositionAtTimeCaught);
                 //Debug.Log("HAHAHA");
             }
@@ -81,7 +80,6 @@ public class AIHunterTracking : MonoBehaviour
             _playerCaughtInSight = true;
             if (gameObject.GetComponent<AIHunterShooting>().FireCycle == false)
             {
-                _playerPositionAtTimeCaught = _playerGameObject.transform.position;
                 RotateHunter(_playerPositionAtTimeCaught);
             }
             gameObject.GetComponent<AIHunterShooting>().canFire = true;
@@ -95,8 +93,6 @@ public class AIHunterTracking : MonoBehaviour
 
     public void Patrol()
     {
-        gameObject.GetComponent<SpriteRenderer>().color = Color.blue;
-
         if (_rotateToPoint || _playerCaughtInSight)
         {
             _rotateTimer++;
