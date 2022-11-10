@@ -98,7 +98,7 @@ public class Player : MonoBehaviour
         // Update the UI
         _healthText.text = $"Health: {health}";
         _scoreText.text = $"Score: {score}";
-        _wheatText.text = $"Wheat: {wheat} / 11";
+        _wheatText.text = $"Wheat: {wheat} / 20";
         _hordeSizeText.text = $"x {hordeSize}";
 
     }

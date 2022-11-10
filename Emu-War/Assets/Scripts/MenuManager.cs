@@ -7,7 +7,7 @@ public class MenuManager : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene("LevelForM2");
+        SceneManager.LoadScene("Level");
     }
 
     public void SeeCredits()
