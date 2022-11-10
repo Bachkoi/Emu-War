@@ -21,7 +21,7 @@ public class BulletBehavior : MonoBehaviour
         transform.position += transform.right * _bulletSpeed * Time.deltaTime;
         transform.position = new Vector3(transform.position.x, transform.position.y, -1.0f);
         _lifetimeCount++;
-        if(_lifetimeCount > 300)
+        if(_lifetimeCount > 30000)
         {
             _lifetimeCount = 0;
             gameObject.SetActive(false);
@@ -30,7 +30,7 @@ public class BulletBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject.tag);
+        //Debug.Log(collision.name);
         // If the bullet collides with an emu...
         if (collision.gameObject.CompareTag("Emu"))
         {
@@ -38,18 +38,20 @@ public class BulletBehavior : MonoBehaviour
             gameObject.SetActive(false);
         }
 
-        else if (collision.gameObject.CompareTag("Horde"))
+        if (collision.gameObject.CompareTag("Horde"))
         {
             collision.gameObject.GetComponent<Horde>().isDead = true;
             gameObject.SetActive(false);
         }
 
         // If the bullet collides with an wall...
-        else if (collision.gameObject.CompareTag("Wall"))
+        if (collision.gameObject.CompareTag("Wall"))
         {
             gameObject.SetActive(false);
         }
     }
+
+    
 
 
 }

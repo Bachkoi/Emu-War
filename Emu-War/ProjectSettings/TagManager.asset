@@ -9,6 +9,7 @@ TagManager:
   - Wall
   - Obstacle
   - Horde
+  - Score
   layers:
   - Default
   - TransparentFX

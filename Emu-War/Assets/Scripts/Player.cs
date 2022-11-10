@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public List<GameObject> potentialEmus;
     public Queue<GameObject> hordeQueue;
     public List<GameObject> horde;
+    public bool isDead;
     public float followRadius = 1.0f;
     private float _speedBuffCooldown;
     private float _speedBuffTimer;
@@ -25,7 +26,11 @@ public class Player : MonoBehaviour
     private bool _wheatSenseReady;
     private bool _wheatSenseActive;
     private Animator _anim;
+    public float dTime;
+    public float score;
+
     [SerializeReference] private TextMeshProUGUI _healthText;
+    [SerializeReference] private TextMeshProUGUI _scoreText;
     [SerializeReference] private TextMeshProUGUI _wheatText;
     [SerializeReference] private TextMeshProUGUI _hordeSizeText;
     [SerializeReference] private Image _speedAbilityProgress;
@@ -92,10 +97,10 @@ public class Player : MonoBehaviour
 
         // Update the UI
         _healthText.text = $"Health: {health}";
+        _scoreText.text = $"Score: {score}";
         _wheatText.text = $"Wheat: {wheat} / 11";
-        _hordeSizeText.text = $"Horde Size: {hordeSize}";
-        _speedAbilityProgress.fillAmount = 1 - (_speedBuffCooldown / 5);
-        _wheatAbilityProgress.fillAmount = 1 - (_wheatSenseCooldown / 5);
+        _hordeSizeText.text = $"x {hordeSize}";
+
     }
 
     /// <summary>
@@ -108,7 +113,7 @@ public class Player : MonoBehaviour
         targetPos.z = -1;
 
         // Check if the mouse is inside the player
-        bool mouseInsidePlayer = GetComponent<Collider2D>().bounds.Contains(targetPos);
+        bool mouseInsidePlayer = GetComponent<CircleCollider2D>().bounds.Contains(targetPos);
 
 
         // If it isn't, move the player
@@ -116,7 +121,7 @@ public class Player : MonoBehaviour
         {
             foreach(GameObject obj in horde)
             {
-                //obj.GetComponent<Animator>().SetBool("isWalking", true); // Set horde anim to be true.
+                obj.GetComponent<Animator>().SetBool("isWalking", true); // Set horde anim to be true.
             }
             _anim.SetBool("isWalking", true);
 
@@ -127,7 +132,7 @@ public class Player : MonoBehaviour
         {
             foreach (GameObject obj in horde)
             {
-                //obj.GetComponent<Animator>().SetBool("isWalking", false); // Set the horde anim to be false. COMMENTED UNTIL WE HAVE THE ANIMATIONS WORKING
+                obj.GetComponent<Animator>().SetBool("isWalking", false); // Set the horde anim to be false. COMMENTED UNTIL WE HAVE THE ANIMATIONS WORKING
             }
             _anim.SetBool("isWalking", false);
         }
@@ -212,6 +217,8 @@ public class Player : MonoBehaviour
         {
             // Reduce the time from the cooldown
             _speedBuffCooldown -= Time.deltaTime;
+
+            _speedAbilityProgress.fillAmount = 1 - (_speedBuffCooldown / 5);
         }
         // If the buff is not on cooldown and not in use
         else if (_speedBuffCooldown <= 0 && !_speedBuffActive)
@@ -225,6 +232,8 @@ public class Player : MonoBehaviour
         {
             // Reduce active timer
             _speedBuffTimer -= Time.deltaTime;
+
+            _speedAbilityProgress.fillAmount = (_speedBuffTimer / 5);
 
             // If the timer falls below 0s remaining
             if (_speedBuffTimer <= 0)
@@ -251,6 +260,7 @@ public class Player : MonoBehaviour
         {
             // Reduce the time from the cooldown
             _wheatSenseCooldown -= Time.deltaTime;
+            _wheatAbilityProgress.fillAmount = 1 - (_wheatSenseCooldown / 5);
         }
         // If the buff is not on cooldown and not in use
         else if (_wheatSenseCooldown <= 0 && !_wheatSenseActive)
@@ -267,6 +277,8 @@ public class Player : MonoBehaviour
 
             // Reduce active timer
             _wheatSenseTimer -= Time.deltaTime;
+
+            _wheatAbilityProgress.fillAmount = (_wheatSenseTimer / 5);
 
             // If the timer falls below 0s remaining
             if (_wheatSenseTimer <= 0)
@@ -352,6 +364,40 @@ public class Player : MonoBehaviour
 
         // Calculate and return the angle
         return Vector2.Angle(Vector2.right, _closest.transform.position - _position) * _sign + 15;
+    }
+
+
+    public float PlayerScore()
+    {
+        if (score != 0)
+        {
+            return score;
+        }
+        if (!isDead)
+        {
+            switch (dTime)
+            {
+                case < 120:
+                    score += 5000;
+                    break;
+                case < 180:
+                    score += 4000;
+                    break;
+                case < 240:
+                    score += 3000;
+                    break;
+                case < 300:
+                    score += 2000;
+                    break;
+                case < 360:
+                    score += 1000;
+                    break;
+            }
+        }
+        score += (50.0f * hordeSize);
+        score += (100.0f * wheat);
+
+        return score;
     }
     #endregion
 }

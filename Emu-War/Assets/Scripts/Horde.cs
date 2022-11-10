@@ -15,7 +15,7 @@ public class Horde : MonoBehaviour
     public Vector2 wallPos;
     public Vector3 throwPos;
     public int hordeSize = 0;
-    //Animator anim;
+    Animator anim;
     public bool isDead;
     private float _speed = 5f;
     #endregion
@@ -31,7 +31,7 @@ public class Horde : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -41,6 +41,7 @@ public class Horde : MonoBehaviour
         {
             if(follow == true) // Check to make sure the Emu is collected
             {
+                _speed = player.speed;
                 Vector2 tempPos = this.gameObject.transform.position;
                 tempPos.x = player.transform.position.x + gap.x;
                 tempPos.y = player.transform.position.y + gap.y;
@@ -64,6 +65,7 @@ public class Horde : MonoBehaviour
                 if(this.gameObject.transform.position == throwPos)
                 {
                     isThrown = false;
+                    anim.SetBool("isWalking", false);
                 }
             }
         }

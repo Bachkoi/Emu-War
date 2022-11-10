@@ -8,17 +8,6 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-<<<<<<< HEAD:Emu-War/Assets/Prefabs/Player.prefab
-  - component: {fileID: 8065432941162202326}
-  - component: {fileID: 8065432941162202327}
-  - component: {fileID: 8065432941162202320}
-  - component: {fileID: 8065432941162202325}
-  - component: {fileID: 8065432941162202324}
-  - component: {fileID: 1656836546}
-  m_Layer: 1
-  m_Name: Player
-  m_TagString: Emu
-=======
   - component: {fileID: 4516931918433228929}
   - component: {fileID: 4401743679985876149}
   - component: {fileID: 8171444908640227684}
@@ -27,7 +16,6 @@ GameObject:
   m_Layer: 4
   m_Name: bullet
   m_TagString: Untagged
->>>>>>> dev:Emu-War/Assets/Prefabs_for_Ryan/bullet.prefab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -96,7 +84,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &8171444908640227684
@@ -111,22 +99,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9720df41295f644996efcf913367120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD:Emu-War/Assets/Prefabs/Player.prefab
-  health: 0
-  wheat: 0
-  hordeSize: 0
-  speed: 5
-  _healthText: {fileID: 0}
-  _wheatText: {fileID: 0}
-  _hordeSizeText: {fileID: 0}
---- !u!61 &8065432941162202325
-BoxCollider2D:
-=======
   _bulletSpeed: 40
   player: {fileID: 8065432941162202320, guid: 50f3a488a1b5ce64b9b1678b89710951, type: 3}
 --- !u!58 &-7795690998694550610
 CircleCollider2D:
->>>>>>> dev:Emu-War/Assets/Prefabs_for_Ryan/bullet.prefab
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -138,79 +114,27 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-<<<<<<< HEAD:Emu-War/Assets/Prefabs/Player.prefab
-  m_Offset: {x: 0, y: -0.2004357}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.775, y: 2.1}
-    newSize: {x: 1.55, y: 4.2}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.8, y: 1.8149825}
-  m_EdgeRadius: 0
---- !u!95 &8065432941162202324
-Animator:
-=======
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.49999997
 --- !u!50 &1188859261168994327
 Rigidbody2D:
->>>>>>> dev:Emu-War/Assets/Prefabs_for_Ryan/bullet.prefab
   serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD:Emu-War/Assets/Prefabs/Player.prefab
-  m_GameObject: {fileID: 8065432941162202321}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: be20155f858f22a4ea42ffa2202be0d7, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!50 &1656836546
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8065432941162202321}
-  m_BodyType: 0
-=======
   m_GameObject: {fileID: 5890860765522937646}
-  m_BodyType: 2
->>>>>>> dev:Emu-War/Assets/Prefabs_for_Ryan/bullet.prefab
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-<<<<<<< HEAD:Emu-War/Assets/Prefabs/Player.prefab
-  m_AngularDrag: 0
-  m_GravityScale: 0
-=======
   m_AngularDrag: 0.05
-  m_GravityScale: 1
->>>>>>> dev:Emu-War/Assets/Prefabs_for_Ryan/bullet.prefab
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-<<<<<<< HEAD:Emu-War/Assets/Prefabs/Player.prefab
-  m_Constraints: 4
-=======
-  m_Constraints: 0
->>>>>>> dev:Emu-War/Assets/Prefabs_for_Ryan/bullet.prefab
+  m_Constraints: 7
