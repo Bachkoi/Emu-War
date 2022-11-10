@@ -25,7 +25,7 @@ public class HunterVision : MonoBehaviour
         if(_emuCountInRange > 0)
         {
             GameObject closestEmu = GetClosestEmu();
-            Debug.Log(closestEmu.name);
+            //Debug.Log(closestEmu.name);
             _hunterAi.GetComponent<AIHunterTracking>().InSight = true;
             _hunterAi.GetComponent<AIHunterTracking>().PlayerPositionAtTimeCaught = closestEmu.transform.position;
         }

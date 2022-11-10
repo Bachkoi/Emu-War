@@ -30,7 +30,6 @@ public class BulletBehavior : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //Debug.Log(collision.name);
         // If the bullet collides with an emu...
         if (collision.gameObject.CompareTag("Emu"))
         {
