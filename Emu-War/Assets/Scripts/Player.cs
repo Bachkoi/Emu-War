@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
     public float score;
 
     [SerializeReference] private TextMeshProUGUI _healthText;
+    [SerializeReference] private TextMeshProUGUI _scoreText;
     [SerializeReference] private TextMeshProUGUI _wheatText;
     [SerializeReference] private TextMeshProUGUI _hordeSizeText;
     [SerializeReference] private Image _speedAbilityProgress;
@@ -96,10 +97,10 @@ public class Player : MonoBehaviour
 
         // Update the UI
         _healthText.text = $"Health: {health}";
+        _scoreText.text = $"Score: {score}";
         _wheatText.text = $"Wheat: {wheat} / 11";
-        _hordeSizeText.text = $"Horde Size: {hordeSize}";
-        _speedAbilityProgress.fillAmount = 1 - (_speedBuffCooldown / 5);
-        _wheatAbilityProgress.fillAmount = 1 - (_wheatSenseCooldown / 5);
+        _hordeSizeText.text = $"x {hordeSize}";
+
     }
 
     /// <summary>
@@ -112,7 +113,7 @@ public class Player : MonoBehaviour
         targetPos.z = -1;
 
         // Check if the mouse is inside the player
-        bool mouseInsidePlayer = GetComponent<Collider2D>().bounds.Contains(targetPos);
+        bool mouseInsidePlayer = GetComponent<CircleCollider2D>().bounds.Contains(targetPos);
 
 
         // If it isn't, move the player
@@ -216,6 +217,8 @@ public class Player : MonoBehaviour
         {
             // Reduce the time from the cooldown
             _speedBuffCooldown -= Time.deltaTime;
+
+            _speedAbilityProgress.fillAmount = 1 - (_speedBuffCooldown / 5);
         }
         // If the buff is not on cooldown and not in use
         else if (_speedBuffCooldown <= 0 && !_speedBuffActive)
@@ -229,6 +232,8 @@ public class Player : MonoBehaviour
         {
             // Reduce active timer
             _speedBuffTimer -= Time.deltaTime;
+
+            _speedAbilityProgress.fillAmount = (_speedBuffTimer / 5);
 
             // If the timer falls below 0s remaining
             if (_speedBuffTimer <= 0)
@@ -255,6 +260,7 @@ public class Player : MonoBehaviour
         {
             // Reduce the time from the cooldown
             _wheatSenseCooldown -= Time.deltaTime;
+            _wheatAbilityProgress.fillAmount = 1 - (_wheatSenseCooldown / 5);
         }
         // If the buff is not on cooldown and not in use
         else if (_wheatSenseCooldown <= 0 && !_wheatSenseActive)
@@ -271,6 +277,8 @@ public class Player : MonoBehaviour
 
             // Reduce active timer
             _wheatSenseTimer -= Time.deltaTime;
+
+            _wheatAbilityProgress.fillAmount = (_wheatSenseTimer / 5);
 
             // If the timer falls below 0s remaining
             if (_wheatSenseTimer <= 0)

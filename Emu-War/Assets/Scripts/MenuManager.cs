@@ -10,6 +10,11 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene("LevelForM2");
     }
 
+    public void SeeCredits()
+    {
+        SceneManager.LoadScene("Credits");
+    }
+
     public void ReturnToMenu()
     {
         SceneManager.LoadScene("MainMenu");

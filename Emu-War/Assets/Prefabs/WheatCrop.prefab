@@ -82,12 +82,12 @@ SpriteRenderer:
   m_SortingLayerID: 2079322825
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 278546502, guid: e854f2afdf9ca264b80d648833623e1a, type: 3}
   m_Color: {r: 0.8490566, g: 0.69818854, b: 0.4285333, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_DrawMode: 1
+  m_Size: {x: 1.125, y: 1.125}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -110,10 +110,10 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
+    oldSize: {x: 1.725, y: 1.85}
+    newSize: {x: 1.125, y: 1.125}
     adaptiveTilingThreshold: 0.5
-    drawMode: 0
+    drawMode: 1
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
@@ -133,6 +133,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   player: {fileID: 0}
+  wheatArray:
+  - {fileID: 278546502, guid: e854f2afdf9ca264b80d648833623e1a, type: 3}
+  - {fileID: -854603040, guid: e854f2afdf9ca264b80d648833623e1a, type: 3}
+  - {fileID: -1746640836, guid: e854f2afdf9ca264b80d648833623e1a, type: 3}
+  - {fileID: -91853771, guid: e854f2afdf9ca264b80d648833623e1a, type: 3}
 --- !u!50 &-8129212992745425201
 Rigidbody2D:
   serializedVersion: 4
