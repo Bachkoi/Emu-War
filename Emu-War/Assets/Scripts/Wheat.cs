@@ -26,6 +26,7 @@ public class Wheat : MonoBehaviour
         {
             // Count collected wheat
             player.wheat++;
+            player.score += 100.0f;
 
             // Destroy the wheat
             Destroy(gameObject);

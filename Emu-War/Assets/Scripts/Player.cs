@@ -117,6 +117,7 @@ public class Player : MonoBehaviour
         horde.Add(caughtEmu);
         hordeQueue.Enqueue(caughtEmu);
         caughtEmu.GetComponent<Horde>().follow = true;
+        score += 50.0f;
         followRadius += 0.1f;
         HordeReposition();
     }
@@ -206,8 +207,8 @@ public class Player : MonoBehaviour
                     break;
             }
         }
-        score += (50.0f * hordeSize);
-        score += (100.0f * wheat);
+        //score += (50.0f * hordeSize);
+        //score += (100.0f * wheat);
 
         return score;
     }
