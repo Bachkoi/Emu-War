@@ -176,7 +176,7 @@ TilemapRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5e0089e56716e00439e68bd08b4e6cad, type: 2}
+  - {fileID: 2100000, guid: a1e83445c7831944c943d63b4d288e5f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8457,7 +8457,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 226512460}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: c45b91155deb1404eae2ff5dbf0c916f, type: 2}
   m_CullingMode: 0
@@ -8633,7 +8633,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 289266467}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: c45b91155deb1404eae2ff5dbf0c916f, type: 2}
   m_CullingMode: 0
@@ -10839,7 +10839,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1068695881}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: c45b91155deb1404eae2ff5dbf0c916f, type: 2}
   m_CullingMode: 0
@@ -11025,7 +11025,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1170476736}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: c45b91155deb1404eae2ff5dbf0c916f, type: 2}
   m_CullingMode: 0
@@ -11191,7 +11191,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1195406172}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: c45b91155deb1404eae2ff5dbf0c916f, type: 2}
   m_CullingMode: 0
@@ -11372,7 +11372,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1380714922}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: c45b91155deb1404eae2ff5dbf0c916f, type: 2}
   m_CullingMode: 0
@@ -12181,6 +12181,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 8468785461837855868, guid: 2d645a49aba65454ab476843820082de, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1656836547}
+    - target: {fileID: 8468785461837855868, guid: 2d645a49aba65454ab476843820082de, type: 3}
+      propertyPath: playerObject
+      value: 
+      objectReference: {fileID: 1656836541}
+    - target: {fileID: 8468785461837855868, guid: 2d645a49aba65454ab476843820082de, type: 3}
       propertyPath: _playerObject
       value: 
       objectReference: {fileID: 1656836541}
@@ -12315,7 +12323,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2066569187}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: c45b91155deb1404eae2ff5dbf0c916f, type: 2}
   m_CullingMode: 0

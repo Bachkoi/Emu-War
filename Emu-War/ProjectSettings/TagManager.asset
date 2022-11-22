@@ -10,6 +10,7 @@ TagManager:
   - Obstacle
   - Horde
   - Hunter
+  - Score
   layers:
   - Default
   - TransparentFX

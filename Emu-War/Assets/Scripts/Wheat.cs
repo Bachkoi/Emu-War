@@ -7,6 +7,8 @@ public class Wheat : MonoBehaviour
     #region Fields
     public float health;
     public Player player;
+    public Sprite[] wheatArray;
+    private SpriteRenderer _spriteRenderer;
     #endregion
 
     #region Methods
@@ -17,10 +19,29 @@ public class Wheat : MonoBehaviour
     {
         // Set initial health value
         health = 100;
+
+        _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     private void Update()
     {
+        if (health <= 100)
+        {
+            _spriteRenderer.sprite = wheatArray[0];
+        }
+        if (health <= 75)
+        {
+            _spriteRenderer.sprite = wheatArray[1];
+        }
+        if (health <= 50)
+        {
+            _spriteRenderer.sprite = wheatArray[2];
+        }
+        if (health <= 25)
+        {
+            _spriteRenderer.sprite = wheatArray[3];
+        }
+
         // If there's no remaining health
         if (health <= 0)
         {
