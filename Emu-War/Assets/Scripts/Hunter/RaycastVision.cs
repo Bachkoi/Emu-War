@@ -33,9 +33,9 @@ public class RaycastVision : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        _startingAngle = this.gameObject.GetComponentInParent<Transform>().rotation.eulerAngles.z + _fov / 2f;// + 90;
+        _startingAngle = _hunterAi.GetComponent<Transform>().rotation.eulerAngles.z + _fov / 2f;// + 90;
         //_startingAngle = _fov - this.gameObject.GetComponentInParent<Transform>().rotation.eulerAngles.z / 2f;
-        //_origin = this.gameObject.GetComponentInParent<Transform>().position;
+        _origin = _hunterAi.GetComponent<Transform>().position;
     }
     void LateUpdate()
     {
@@ -104,9 +104,9 @@ public class RaycastVision : MonoBehaviour
             _hunterAi.GetComponent<AIHunterTracking>().InSight = true;
         }
 
-        //_visionMesh.vertices = vertices;
-        //_visionMesh.uv = uv;
-        //_visionMesh.triangles = triangles;
+        _visionMesh.vertices = vertices;
+        _visionMesh.uv = uv;
+        _visionMesh.triangles = triangles;
     }
 
 
