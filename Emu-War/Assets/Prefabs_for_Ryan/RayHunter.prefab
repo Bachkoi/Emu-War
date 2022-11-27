@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2889660877823474043}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 749b9069dc4742c5bfa5c74644049926, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -124,7 +124,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5178120510157864178}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.11, y: -2.48, z: -0.1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -161,7 +161,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5705383306063991352}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.1}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 3.2677083, y: 3.2677083, z: 3.2677083}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -298,7 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 392431d15fa267d4cba17487a15d4e5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hunterAi: {fileID: 5178120510157864178}
+  _hunterAi: {fileID: 8690159584948470388}
 --- !u!1 &8690159584948470388
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,8 +312,9 @@ GameObject:
   - component: {fileID: 3041880774477599693}
   - component: {fileID: 8728771933185492403}
   - component: {fileID: 2284432093167684450}
+  - component: {fileID: 6226875651078944792}
   m_Layer: 3
-  m_Name: RayHunter
+  m_Name: RayHunterBody
   m_TagString: Hunter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -448,8 +449,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inSight: 0
   inPeripheral: 0
-  hunterSpeed: 10
+  hunterSpeed: 2
   _rotationSpeed: 5
   _raycastVision: {fileID: 8230344258661043751}
   _spots: []
   _randomSpotOdds: 0
+--- !u!114 &6226875651078944792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8690159584948470388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1df25e405dc14904baaa2a75a9932bb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rateOfFire: 1
+  canFire: 0
