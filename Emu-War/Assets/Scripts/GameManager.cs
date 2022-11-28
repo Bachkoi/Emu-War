@@ -13,13 +13,14 @@ public class GameManager : MonoBehaviour
     public Player player;
     public GameObject playerObject;
     private int _amountOfWheat;
+    [SerializeReference] private ScoreTracker _scoreTracker;
     #endregion
 
     #region Methods
     private void Start()
     {
         // TODO: Create LevelManager to handle wheat in the level/win conditions
-        _amountOfWheat = 2; // temporary assignment for CollisionTest scene
+        _amountOfWheat = 20; // temporary assignment for CollisionTest scene
 
         _player = _playerObject.GetComponent<Player>();
         player = playerObject.GetComponent<Player>();
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour
             player.isDead = true;
             _player.score = _player.PlayerScore();
             player.score = player.PlayerScore();
+            _scoreTracker.score = player.score;
             SceneManager.LoadScene("GameOver");
         }
 
@@ -49,7 +51,8 @@ public class GameManager : MonoBehaviour
             _player.score = _player.PlayerScore();
             player.score = player.PlayerScore();
             Console.WriteLine(player.score);
-            //SceneManager.LoadScene("GameOver");
+            _scoreTracker.score = player.score;
+            SceneManager.LoadScene("GameOver");
 
             //player.dTime += Time.deltaTime;
             //_player.dTime += Time.deltaTime;

@@ -8292,6 +8292,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abcd715ba6b2daf44a6f7018a9fb3c4f, type: 3}
+--- !u!114 &159469696 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 708658700, guid: 1060bf1067877b840800af95c364a851, type: 3}
+  m_PrefabInstance: {fileID: 1590693805}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &161996680
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10533,6 +10544,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &661671015 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1453895566, guid: 1060bf1067877b840800af95c364a851, type: 3}
+  m_PrefabInstance: {fileID: 1590693805}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &683830877 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1033564931, guid: 1060bf1067877b840800af95c364a851, type: 3}
+  m_PrefabInstance: {fileID: 1590693805}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &769792209
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12530,6 +12563,18 @@ PrefabInstance:
       propertyPath: _hordeSizeText
       value: 
       objectReference: {fileID: 1590693806}
+    - target: {fileID: 8065432941162202320, guid: 50f3a488a1b5ce64b9b1678b89710951, type: 3}
+      propertyPath: _wheatDetector
+      value: 
+      objectReference: {fileID: 159469696}
+    - target: {fileID: 8065432941162202320, guid: 50f3a488a1b5ce64b9b1678b89710951, type: 3}
+      propertyPath: _speedAbilityProgress
+      value: 
+      objectReference: {fileID: 661671015}
+    - target: {fileID: 8065432941162202320, guid: 50f3a488a1b5ce64b9b1678b89710951, type: 3}
+      propertyPath: _wheatAbilityProgress
+      value: 
+      objectReference: {fileID: 683830877}
     - target: {fileID: 8065432941162202320, guid: 50f3a488a1b5ce64b9b1678b89710951, type: 3}
       propertyPath: potentialEmus.Array.data[0]
       value: 

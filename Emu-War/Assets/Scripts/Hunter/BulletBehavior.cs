@@ -21,7 +21,7 @@ public class BulletBehavior : MonoBehaviour
         transform.position += transform.right * _bulletSpeed * Time.deltaTime;
         transform.position = new Vector3(transform.position.x, transform.position.y, -1.0f);
         _lifetimeCount++;
-        if(_lifetimeCount > 300)
+        if(_lifetimeCount > 30000)
         {
             _lifetimeCount = 0;
             gameObject.SetActive(false);
@@ -49,4 +49,8 @@ public class BulletBehavior : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
+    
+
+
 }
