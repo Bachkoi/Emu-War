@@ -49,11 +49,11 @@ public class Player : MonoBehaviour
         wheat = 0;
         hordeSize = 0;
         _anim = GetComponent<Animator>();
-        _speedBuffCooldown = 5;
+        _speedBuffCooldown = 15;
         _speedBuffTimer = 5;
         _speedBuffReady = false;
         _speedBuffActive = false;
-        _wheatSenseCooldown = 5;
+        _wheatSenseCooldown = 10;
         _wheatSenseTimer = 5;
         _wheatSenseReady = false;
         _wheatSenseActive = false;
@@ -72,7 +72,9 @@ public class Player : MonoBehaviour
         UseAbility();
 
         // Movement
-        FollowMouse();
+        //FollowMouse();
+        Movement();
+
         if (Input.GetMouseButtonDown(0))
         {
             if (hordeSize > 0)
@@ -101,6 +103,31 @@ public class Player : MonoBehaviour
         _wheatText.text = $"Wheat: {wheat} / 20";
         _hordeSizeText.text = $"x {hordeSize}";
 
+    }
+
+    private void Movement()
+    {
+        _anim.SetBool("isWalking", false);
+        if (Input.GetKey(KeyCode.D))
+        {
+            transform.position += Vector3.right * speed * Time.deltaTime;
+            _anim.SetBool("isWalking", true);
+        }
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.position += Vector3.left * speed * Time.deltaTime;
+            _anim.SetBool("isWalking", true);
+        }
+        if (Input.GetKey(KeyCode.W))
+        {
+            transform.position += Vector3.up * speed * Time.deltaTime;
+            _anim.SetBool("isWalking", true);
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            transform.position += Vector3.up * -speed * Time.deltaTime;
+            _anim.SetBool("isWalking", true);
+        }
     }
 
     /// <summary>
@@ -218,7 +245,7 @@ public class Player : MonoBehaviour
             // Reduce the time from the cooldown
             _speedBuffCooldown -= Time.deltaTime;
 
-            _speedAbilityProgress.fillAmount = 1 - (_speedBuffCooldown / 5);
+            _speedAbilityProgress.fillAmount = 1 - (_speedBuffCooldown / 15);
         }
         // If the buff is not on cooldown and not in use
         else if (_speedBuffCooldown <= 0 && !_speedBuffActive)
@@ -242,7 +269,7 @@ public class Player : MonoBehaviour
                 speed = 5;
 
                 // Reset the timers
-                _speedBuffCooldown = 5;
+                _speedBuffCooldown = 15;
                 _speedBuffTimer = 5;
 
                 // Set the buff's active state
@@ -260,7 +287,7 @@ public class Player : MonoBehaviour
         {
             // Reduce the time from the cooldown
             _wheatSenseCooldown -= Time.deltaTime;
-            _wheatAbilityProgress.fillAmount = 1 - (_wheatSenseCooldown / 5);
+            _wheatAbilityProgress.fillAmount = 1 - (_wheatSenseCooldown / 10);
         }
         // If the buff is not on cooldown and not in use
         else if (_wheatSenseCooldown <= 0 && !_wheatSenseActive)
@@ -287,7 +314,7 @@ public class Player : MonoBehaviour
                 _wheatDetector.enabled = false;
 
                 // Reset the timers
-                _wheatSenseCooldown = 5;
+                _wheatSenseCooldown = 10;
                 _wheatSenseTimer = 5;
 
                 // Set the buff's active state

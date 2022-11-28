@@ -10,6 +10,11 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene("Level");
     }
 
+    public void SeeControls()
+    {
+        SceneManager.LoadScene("Controls");
+    }
+
     public void SeeCredits()
     {
         SceneManager.LoadScene("Credits");
