@@ -112,21 +112,38 @@ public class Player : MonoBehaviour
         {
             transform.position += Vector3.right * speed * Time.deltaTime;
             _anim.SetBool("isWalking", true);
+            foreach (GameObject obj in horde)
+            {
+                obj.GetComponent<Animator>().SetBool("isWalking", true); // Set horde anim to be true.
+            }
+
         }
         if (Input.GetKey(KeyCode.A))
         {
             transform.position += Vector3.left * speed * Time.deltaTime;
             _anim.SetBool("isWalking", true);
+            foreach (GameObject obj in horde)
+            {
+                obj.GetComponent<Animator>().SetBool("isWalking", true); // Set horde anim to be true.
+            }
         }
         if (Input.GetKey(KeyCode.W))
         {
             transform.position += Vector3.up * speed * Time.deltaTime;
             _anim.SetBool("isWalking", true);
+            foreach (GameObject obj in horde)
+            {
+                obj.GetComponent<Animator>().SetBool("isWalking", true); // Set horde anim to be true.
+            }
         }
         if (Input.GetKey(KeyCode.S))
         {
             transform.position += Vector3.up * -speed * Time.deltaTime;
             _anim.SetBool("isWalking", true);
+            foreach (GameObject obj in horde)
+            {
+                obj.GetComponent<Animator>().SetBool("isWalking", true); // Set horde anim to be true.
+            }
         }
     }
 
