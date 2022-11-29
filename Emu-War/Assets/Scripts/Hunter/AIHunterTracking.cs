@@ -13,8 +13,6 @@ public class AIHunterTracking : MonoBehaviour
     private GameObject _playerGameObject;
     private Vector3 _playerPositionAtTimeCaught;
     private bool _playerCaughtInSight;
-    [SerializeField]
-    private RaycastVision _raycastVision;
     #region Patrol Points
     [SerializeField]
     private List<Vector3> _spots;
@@ -56,7 +54,6 @@ public class AIHunterTracking : MonoBehaviour
         _playerGameObject = GameObject.FindGameObjectsWithTag("Emu")[0];
         _playerPositionAtTimeCaught = Vector3.zero;
         _playerCaughtInSight = false;
-        //_raycastVision = GetComponentInChildren<RaycastVision>();
     }
 
     // Update is called once per frame
@@ -67,24 +64,15 @@ public class AIHunterTracking : MonoBehaviour
 
     public void OnSight()
     {
-
-
-
-
         //If Emu is in sight, shoot, otherwise patrol
         if (inSight)
         {
             _playerCaughtInSight = true;
-
-
-
-
             if (gameObject.GetComponent<AIHunterShooting>().FireCycle == false)
             {
                 RotateHunter(_playerPositionAtTimeCaught);
                 //Debug.Log("HAHAHA");
             }
-
             gameObject.GetComponent<AIHunterShooting>().canFire = true;
         }
         else if(inPeripheral)
@@ -96,13 +84,8 @@ public class AIHunterTracking : MonoBehaviour
             }
             gameObject.GetComponent<AIHunterShooting>().canFire = true;
         }
-
         else if(gameObject.GetComponent<AIHunterShooting>().FireCycle == false)
         {
-            //Set origin and rotation to Raycast
-            //pass position and angle to raycast vision
-            //_raycastVision.SetOrigin(gameObject.transform.position);
-            //_raycastVision.SetAimDirection(gameObject.transform.rotation.eulerAngles);
             Patrol();
             gameObject.GetComponent<AIHunterShooting>().canFire = false;
         }

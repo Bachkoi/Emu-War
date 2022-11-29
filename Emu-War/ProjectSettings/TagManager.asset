@@ -9,13 +9,12 @@ TagManager:
   - Wall
   - Obstacle
   - Horde
-  - Hunter
   - Score
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Hunter
+  - 
   - Water
   - UI
   - 

@@ -420,7 +420,6 @@ public class Player : MonoBehaviour
         }
         if (!isDead)
         {
-            
             switch (dTime)
             {
                 case < 120:
@@ -439,7 +438,6 @@ public class Player : MonoBehaviour
                     score += 1000;
                     break;
             }
-            
         }
         //score += (50.0f * hordeSize);
         //score += (100.0f * wheat);
