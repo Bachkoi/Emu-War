@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class AIHunterTracking : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class AIHunterTracking : MonoBehaviour
     private GameObject _playerGameObject;
     private Vector3 _playerPositionAtTimeCaught;
     private bool _playerCaughtInSight;
+    private float _hunterRotation;
     #region Patrol Points
     [SerializeField]
     private List<Vector3> _spots;
@@ -54,12 +56,15 @@ public class AIHunterTracking : MonoBehaviour
         _playerGameObject = GameObject.FindGameObjectsWithTag("Emu")[0];
         _playerPositionAtTimeCaught = Vector3.zero;
         _playerCaughtInSight = false;
+
     }
 
     // Update is called once per frame
     void Update()
     {
         OnSight();
+        _hunterRotation = transform.rotation.z;
+        hunterRotation(_hunterRotation);
     }
 
     public void OnSight()
@@ -139,6 +144,47 @@ public class AIHunterTracking : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation, rotationQuaternion, _rotationSpeed * Time.deltaTime);
         float dot = Vector2.Dot((targetOfRotation).normalized, this.transform.forward);
         return dot;
+    }
+
+    public void hunterRotation(float degree)
+    {
+        float tempDeg = MathF.Abs(degree);
+        if(tempDeg > 360f)
+        {
+            tempDeg = tempDeg % 360f;
+        }
+        // Change the Degrees
+        if (tempDeg < 30)
+        {
+            if(tempDeg > 30 && tempDeg < 60)
+            {
+                if (tempDeg > 60 && tempDeg < 90)
+                {
+                    if (tempDeg > 90 && tempDeg < 120)
+                    {
+                        if (tempDeg > 120 && tempDeg < 150)
+                        {
+                            if (tempDeg > 150 && tempDeg < 180)
+                            {
+                                if (tempDeg > 180 && tempDeg < 210)
+                                {
+                                    if (tempDeg > 210 && tempDeg < 240)
+                                    {
+                                        if (tempDeg > 240 && tempDeg < 270)
+                                        {
+                                            if (tempDeg > 270 && tempDeg < 300)
+                                            {
+
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
 }
