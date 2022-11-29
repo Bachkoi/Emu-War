@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3200672270926640745}
   - component: {fileID: -1577766356538751464}
   - component: {fileID: -8129212992745425201}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: WheatCrop
   m_TagString: Wheat
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 8556955084229255745}
   - component: {fileID: 7924500928848785053}
   - component: {fileID: 1384690903184254471}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
