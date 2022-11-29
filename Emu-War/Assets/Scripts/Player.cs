@@ -108,6 +108,10 @@ public class Player : MonoBehaviour
     private void Movement()
     {
         _anim.SetBool("isWalking", false);
+        foreach (GameObject obj in horde)
+        {
+            obj.GetComponent<Animator>().SetBool("isWalking", false); // Set horde anim to be true.
+        }
         if (Input.GetKey(KeyCode.D))
         {
             transform.position += Vector3.right * speed * Time.deltaTime;

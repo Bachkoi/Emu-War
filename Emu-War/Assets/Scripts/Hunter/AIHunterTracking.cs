@@ -9,6 +9,9 @@ public class AIHunterTracking : MonoBehaviour
     public bool inSight;
     public bool inPeripheral;
     public float hunterSpeed;
+    public float temporarayHunterRotation;
+    public Animator anim;
+    public Quaternion tempRot;
     [SerializeField]
     private float _rotationSpeed;
     private GameObject _playerGameObject;
@@ -56,14 +59,16 @@ public class AIHunterTracking : MonoBehaviour
         _playerGameObject = GameObject.FindGameObjectsWithTag("Emu")[0];
         _playerPositionAtTimeCaught = Vector3.zero;
         _playerCaughtInSight = false;
-
+        anim = GetComponent<Animator>();
+        temporarayHunterRotation = 0.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
         OnSight();
-        _hunterRotation = transform.rotation.z;
+        //_hunterRotation = tempRot.eulerAngles.z;
+        _hunterRotation = this.gameObject.transform.localRotation.eulerAngles.z;
         hunterRotation(_hunterRotation);
     }
 
@@ -76,9 +81,14 @@ public class AIHunterTracking : MonoBehaviour
             if (gameObject.GetComponent<AIHunterShooting>().FireCycle == false)
             {
                 RotateHunter(_playerPositionAtTimeCaught);
+                //hunterRotation(RotateHunter(_playerPositionAtTimeCaught));
                 //Debug.Log("HAHAHA");
             }
             gameObject.GetComponent<AIHunterShooting>().canFire = true;
+            //anim.SetBool("isWalking", false);
+            //anim.SetBool("isShooting", false);
+
+
         }
         else if(inPeripheral)
         {
@@ -86,13 +96,20 @@ public class AIHunterTracking : MonoBehaviour
             if (gameObject.GetComponent<AIHunterShooting>().FireCycle == false)
             {
                 RotateHunter(_playerPositionAtTimeCaught);
+                //hunterRotation(RotateHunter(_playerPositionAtTimeCaught));
             }
             gameObject.GetComponent<AIHunterShooting>().canFire = true;
+            //anim.SetBool("isWalking", false);
+            //anim.SetBool("isShooting", false);
+
+
         }
         else if(gameObject.GetComponent<AIHunterShooting>().FireCycle == false)
         {
             Patrol();
             gameObject.GetComponent<AIHunterShooting>().canFire = false;
+            anim.SetBool("isWalking", true);
+            anim.SetBool("isShooting", false);
         }
     }
 
@@ -142,48 +159,109 @@ public class AIHunterTracking : MonoBehaviour
         float angle = Mathf.Atan2(targetOfRotation.y, targetOfRotation.x) * Mathf.Rad2Deg;
         Quaternion rotationQuaternion = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotationQuaternion, _rotationSpeed * Time.deltaTime);
+        //tempRot = Quaternion.Slerp(transform.rotation, rotationQuaternion, _rotationSpeed * Time.deltaTime);
+        //Quaternion tempRot = Quaternion.Slerp(transform.rotation, rotationQuaternion, _rotationSpeed * Time.deltaTime);
+        //hunterRotation(tempRot.z);
         float dot = Vector2.Dot((targetOfRotation).normalized, this.transform.forward);
+        //hunterRotation(dot);
         return dot;
     }
 
     public void hunterRotation(float degree)
     {
-        float tempDeg = MathF.Abs(degree);
-        if(tempDeg > 360f)
-        {
-            tempDeg = tempDeg % 360f;
-        }
-        // Change the Degrees
-        if (tempDeg < 30)
-        {
-            if(tempDeg > 30 && tempDeg < 60)
-            {
-                if (tempDeg > 60 && tempDeg < 90)
-                {
-                    if (tempDeg > 90 && tempDeg < 120)
-                    {
-                        if (tempDeg > 120 && tempDeg < 150)
-                        {
-                            if (tempDeg > 150 && tempDeg < 180)
-                            {
-                                if (tempDeg > 180 && tempDeg < 210)
-                                {
-                                    if (tempDeg > 210 && tempDeg < 240)
-                                    {
-                                        if (tempDeg > 240 && tempDeg < 270)
-                                        {
-                                            if (tempDeg > 270 && tempDeg < 300)
-                                            {
+        float tempDeg = degree;
+        temporarayHunterRotation = degree;
 
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
+        //if (degree < 0.0f && degree > -360.0f)
+        //{
+        //    tempDeg = 360.0f - MathF.Abs(tempDeg);
+        //    temporarayHunterRotation = tempDeg;
+        //}
+        //else if(degree < -360f)
+        //{
+        //    tempDeg = tempDeg % 360.0f;
+        //    tempDeg = 360.0f - MathF.Abs(tempDeg);
+        //    temporarayHunterRotation = tempDeg;
+        //}
+        //else
+        //{
+        //    tempDeg = MathF.Abs(tempDeg);
+        //    if (tempDeg > 360.0f)
+        //    {
+        //        tempDeg = tempDeg % 360.0f;
+        //        temporarayHunterRotation = tempDeg;
+        //    }
+        //}
+        // Change the Degrees
+        if (tempDeg < 20.0f)
+        {
+            //anim.SetFloat("Direction", (float)0);
+            anim.SetInteger("Direction", 0);
+        }
+        else if (tempDeg > 20.0f && tempDeg < 60.0f)
+        {
+            //anim.SetFloat("Direction", (float)1);
+            anim.SetInteger("Direction", 1);
+
+        }
+        else if (tempDeg > 60.0f && tempDeg < 90.0f)
+        {
+            //anim.SetFloat("Direction", (float)2);
+            anim.SetInteger("Direction", 2);
+
+        }
+        else if (tempDeg > 90.0f && tempDeg < 110.0f)
+        {
+            //anim.SetFloat("Direction", (float)3);
+            anim.SetInteger("Direction", 3);
+
+        }
+        else if (tempDeg > 110.0f && tempDeg < 160.0f)
+        {
+            //anim.SetFloat("Direction", (float)4);
+            anim.SetInteger("Direction", 4);
+
+        }
+        else if (tempDeg > 160.0f && tempDeg < 200.0f)
+        {
+            //anim.SetFloat("Direction", (float)5);
+            anim.SetInteger("Direction", 5);
+
+        }
+        //else if (tempDeg > 180 && tempDeg < 200)
+        //{
+        //    anim.SetFloat("Direction", 5);
+        //
+        //}
+        else if (tempDeg > 200.0f && tempDeg < 250.0f)
+        {
+            //anim.SetFloat("Direction", (float)6);
+            anim.SetInteger("Direction", 6);
+
+        }
+        else if (tempDeg > 250.0f && tempDeg < 270.0f)
+        {
+            //anim.SetFloat("Direction", (float)7);
+            anim.SetInteger("Direction", 7);
+
+        }
+        else if (tempDeg > 270.0f && tempDeg < 300.0f)
+        {
+            //anim.SetFloat("Direction", (float)8);
+            anim.SetInteger("Direction", 8);
+
+        }
+        else if (tempDeg > 300.0f && tempDeg < 340.0f)
+        {
+            //anim.SetFloat("Direction", (float)9);
+            anim.SetInteger("Direction", 9);
+
+        }
+        else if(tempDeg > 340.0f && tempDeg < 360.0f)
+        {
+            //anim.SetFloat("Direction", (float)0);
+            anim.SetInteger("Direction", 0);
+
         }
     }
 

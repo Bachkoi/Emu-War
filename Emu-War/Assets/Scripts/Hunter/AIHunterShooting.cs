@@ -8,6 +8,8 @@ public class AIHunterShooting : MonoBehaviour
     [SerializeField]
     private float _rateOfFire;
     public bool canFire;
+    public Animator anim;
+
 
     private ObjectPooler _objPool;
     private float _counter;
@@ -50,6 +52,8 @@ public class AIHunterShooting : MonoBehaviour
         if (_counter > _rateOfFire)
         {
             _fireCycle = true;
+            anim.SetBool("isWalking", false);
+            anim.SetBool("isShooting", true);
             //If there are still bursts shots left
             if(_burstCounter > 0)
             {
