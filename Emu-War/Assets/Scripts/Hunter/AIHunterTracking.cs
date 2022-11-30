@@ -67,8 +67,8 @@ public class AIHunterTracking : MonoBehaviour
     void Update()
     {
         OnSight();
-        //_hunterRotation = tempRot.eulerAngles.z;
-        _hunterRotation = this.gameObject.transform.localRotation.eulerAngles.z;
+        _hunterRotation = tempRot.z;
+        //_hunterRotation = this.gameObject.transform.localRotation.eulerAngles.z;
         hunterRotation(_hunterRotation);
     }
 
@@ -159,7 +159,7 @@ public class AIHunterTracking : MonoBehaviour
         float angle = Mathf.Atan2(targetOfRotation.y, targetOfRotation.x) * Mathf.Rad2Deg;
         Quaternion rotationQuaternion = Quaternion.AngleAxis(angle, Vector3.forward);
         transform.rotation = Quaternion.Slerp(transform.rotation, rotationQuaternion, _rotationSpeed * Time.deltaTime);
-        //tempRot = Quaternion.Slerp(transform.rotation, rotationQuaternion, _rotationSpeed * Time.deltaTime);
+        //tempRot = Quaternion.Slerp(tempRot, rotationQuaternion, _rotationSpeed * Time.deltaTime);
         //Quaternion tempRot = Quaternion.Slerp(transform.rotation, rotationQuaternion, _rotationSpeed * Time.deltaTime);
         //hunterRotation(tempRot.z);
         float dot = Vector2.Dot((targetOfRotation).normalized, this.transform.forward);
