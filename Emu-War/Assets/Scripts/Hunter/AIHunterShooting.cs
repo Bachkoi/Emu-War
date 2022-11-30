@@ -12,6 +12,8 @@ public class AIHunterShooting : MonoBehaviour
     private ObjectPooler _objPool;
     private float _counter;
     private bool _fireCycle;
+    [SerializeField]
+    private AIHunterTracking _hunterTracker;
     #region Burst Fire
     private float _burstCounter;
     private float _burstCooldown;
@@ -56,7 +58,8 @@ public class AIHunterShooting : MonoBehaviour
                 //Cooldown for burst
                 if(_burstCooldown <= 0)
                 {
-                    GameObject bullet = _objPool.SpawnFromPool("Bullets", transform.position, transform.rotation);
+                    //GameObject bullet = _objPool.SpawnFromPool("Bullets", transform.position, transform.rotation);
+                    GameObject bullet = _objPool.SpawnFromPool("Bullets", transform.position, _hunterTracker.CurrentRotation);
                     float randomOffset = (float)Random.Range(-10, 10);
                     bullet.transform.rotation *= Quaternion.AngleAxis(randomOffset, Vector3.forward);
                     bullet.SetActive(true);

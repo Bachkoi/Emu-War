@@ -41,7 +41,8 @@ public class RaycastVision : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        _startingAngle = _hunterAi.GetComponent<Transform>().rotation.eulerAngles.z + _fov / 2f;
+        //_startingAngle = _hunterAi.GetComponent<Transform>().rotation.eulerAngles.z + _fov / 2f;
+        _startingAngle = _hunterAi.GetComponent<AIHunterTracking>().HunterZRotation + _fov / 2f;
         _origin = _hunterAi.GetComponent<Transform>().position;
     }
     //Late update is to make sure the proper angles are updated before creating a mesh

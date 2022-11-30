@@ -451,7 +451,6 @@ MonoBehaviour:
   inPeripheral: 0
   hunterSpeed: 2
   _rotationSpeed: 5
-  _raycastVision: {fileID: 8230344258661043751}
   _spots: []
   _randomSpotOdds: 0
 --- !u!114 &6226875651078944792
@@ -468,3 +467,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rateOfFire: 1
   canFire: 0
+  _hunterTracker: {fileID: 2284432093167684450}
