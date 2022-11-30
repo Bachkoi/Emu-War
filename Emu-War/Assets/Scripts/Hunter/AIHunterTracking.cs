@@ -17,7 +17,8 @@ public class AIHunterTracking : MonoBehaviour
     private GameObject _playerGameObject;
     private Vector3 _playerPositionAtTimeCaught;
     private bool _playerCaughtInSight;
-    private float _hunterRotation;
+    private float _hunterZRotation;
+    private Quaternion _currentRotation;
     #region Patrol Points
     [SerializeField]
     private List<Vector3> _spots;
@@ -46,6 +47,15 @@ public class AIHunterTracking : MonoBehaviour
     {
         set { _playerPositionAtTimeCaught = value; }
     }
+    public float HunterZRotation
+    {
+        get { return _hunterZRotation; }
+        set { _hunterZRotation = value; }
+    }
+    public Quaternion CurrentRotation
+    {
+        get { return _currentRotation; }
+    }
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -59,8 +69,7 @@ public class AIHunterTracking : MonoBehaviour
         _playerGameObject = GameObject.FindGameObjectsWithTag("Emu")[0];
         _playerPositionAtTimeCaught = Vector3.zero;
         _playerCaughtInSight = false;
-        anim = GetComponent<Animator>();
-        temporarayHunterRotation = 0.0f;
+        _hunterZRotation = 0;
     }
 
     // Update is called once per frame
@@ -106,6 +115,8 @@ public class AIHunterTracking : MonoBehaviour
         }
         else if(gameObject.GetComponent<AIHunterShooting>().FireCycle == false)
         {
+            //Set origin and rotation to Raycast
+            //pass position and angle to raycast vision
             Patrol();
             gameObject.GetComponent<AIHunterShooting>().canFire = false;
             anim.SetBool("isWalking", true);
@@ -158,10 +169,9 @@ public class AIHunterTracking : MonoBehaviour
         Vector3 targetOfRotation = focalPoint - transform.position;
         float angle = Mathf.Atan2(targetOfRotation.y, targetOfRotation.x) * Mathf.Rad2Deg;
         Quaternion rotationQuaternion = Quaternion.AngleAxis(angle, Vector3.forward);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotationQuaternion, _rotationSpeed * Time.deltaTime);
-        //tempRot = Quaternion.Slerp(tempRot, rotationQuaternion, _rotationSpeed * Time.deltaTime);
-        //Quaternion tempRot = Quaternion.Slerp(transform.rotation, rotationQuaternion, _rotationSpeed * Time.deltaTime);
-        //hunterRotation(tempRot.z);
+        _currentRotation = Quaternion.Slerp(_currentRotation, rotationQuaternion, _rotationSpeed * Time.deltaTime);
+        _hunterZRotation = _currentRotation.eulerAngles.z;
+        Debug.Log(_hunterZRotation);
         float dot = Vector2.Dot((targetOfRotation).normalized, this.transform.forward);
         //hunterRotation(dot);
         return dot;
