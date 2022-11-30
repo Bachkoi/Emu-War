@@ -10750,11 +10750,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5178120510157864190, guid: 4102028b196e67e458fbb66f8c9b4c3e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.81
+      value: -4.99
       objectReference: {fileID: 0}
     - target: {fileID: 5178120510157864190, guid: 4102028b196e67e458fbb66f8c9b4c3e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.31
+      value: -0.16
       objectReference: {fileID: 0}
     - target: {fileID: 5178120510157864190, guid: 4102028b196e67e458fbb66f8c9b4c3e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10790,11 +10790,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7873279104979671903, guid: 4102028b196e67e458fbb66f8c9b4c3e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.66
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7873279104979671903, guid: 4102028b196e67e458fbb66f8c9b4c3e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.19
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8230344258661043751, guid: 4102028b196e67e458fbb66f8c9b4c3e, type: 3}
       propertyPath: _hunterAi
