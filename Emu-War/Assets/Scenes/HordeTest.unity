@@ -10724,6 +10724,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 260268310825201992, guid: 4102028b196e67e458fbb66f8c9b4c3e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 260268310825201992, guid: 4102028b196e67e458fbb66f8c9b4c3e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 260268310825201992, guid: 4102028b196e67e458fbb66f8c9b4c3e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 260268310825201992, guid: 4102028b196e67e458fbb66f8c9b4c3e, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5178120510157864178, guid: 4102028b196e67e458fbb66f8c9b4c3e, type: 3}
       propertyPath: m_Name
       value: RayHunter

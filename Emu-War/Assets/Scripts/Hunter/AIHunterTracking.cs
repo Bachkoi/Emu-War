@@ -62,7 +62,10 @@ public class AIHunterTracking : MonoBehaviour
     {
         inSight = false;
         _hotpoints = new Queue<Vector3>(_spots);
-        _currentNode = _hotpoints.Dequeue();
+        if(_hotpoints.Count > 0)
+        {
+            _currentNode = _hotpoints.Dequeue();
+        }
         _hotpoints.Enqueue(_currentNode);
         _rotateToPoint = true;
         _rotateTimer = 0;
