@@ -76,9 +76,9 @@ public class AIHunterTracking : MonoBehaviour
     void Update()
     {
         OnSight();
-        _hunterRotation = tempRot.z;
+        //_hunterRotation = tempRot.z;
         //_hunterRotation = this.gameObject.transform.localRotation.eulerAngles.z;
-        hunterRotation(_hunterRotation);
+        hunterRotation(_hunterZRotation);
     }
 
     public void OnSight()

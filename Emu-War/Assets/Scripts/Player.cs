@@ -138,6 +138,8 @@ public class Player : MonoBehaviour
             foreach (GameObject obj in horde)
             {
                 obj.GetComponent<Animator>().SetBool("isWalking", true); // Set horde anim to be true.
+                obj.GetComponent<Animator>().SetBool("isBackwards", true); // Set horde anim to be true.
+
             }
         }
         if (Input.GetKey(KeyCode.S))
@@ -147,6 +149,8 @@ public class Player : MonoBehaviour
             foreach (GameObject obj in horde)
             {
                 obj.GetComponent<Animator>().SetBool("isWalking", true); // Set horde anim to be true.
+                obj.GetComponent<Animator>().SetBool("isBackwards", false); // Set horde anim to be true.
+
             }
         }
     }
