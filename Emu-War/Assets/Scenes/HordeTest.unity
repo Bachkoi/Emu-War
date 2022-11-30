@@ -10800,6 +10800,10 @@ PrefabInstance:
       propertyPath: _hunterAi
       value: 
       objectReference: {fileID: 455405918}
+    - target: {fileID: 8230344258661043751, guid: 4102028b196e67e458fbb66f8c9b4c3e, type: 3}
+      propertyPath: _layerMask.m_Bits
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8879997885719850045, guid: 4102028b196e67e458fbb66f8c9b4c3e, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.5

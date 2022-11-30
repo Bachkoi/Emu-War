@@ -69,17 +69,24 @@ public class AIHunterShooting : MonoBehaviour
                     bullet.SetActive(true);
                     _burstCooldown = 0.3f;
                     _burstCounter--;
+                    //anim.SetBool("isShooting", false);
+
                 }
                 else
                 {
+
                     _burstCooldown-= Time.deltaTime;
+                    //anim.SetBool("isShooting", false);
+
                 }
-                
+
             }
             else
             {
                 _burstCounter = 5;
                 _counter = 0;
+                anim.SetBool("isShooting", false);
+
             }
 
         }
@@ -87,6 +94,8 @@ public class AIHunterShooting : MonoBehaviour
         {
             _counter += Time.deltaTime;
             _fireCycle = false;
+            anim.SetBool("isShooting", false);
+
         }
 
     }
