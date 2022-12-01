@@ -174,7 +174,7 @@ public class AIHunterTracking : MonoBehaviour
         Quaternion rotationQuaternion = Quaternion.AngleAxis(angle, Vector3.forward);
         _currentRotation = Quaternion.Slerp(_currentRotation, rotationQuaternion, _rotationSpeed * Time.deltaTime);
         _hunterZRotation = _currentRotation.eulerAngles.z;
-        Debug.Log(_hunterZRotation);
+        //Debug.Log(_hunterZRotation);
         float dot = Vector2.Dot((targetOfRotation).normalized, this.transform.forward);
         //hunterRotation(dot);
         return dot;

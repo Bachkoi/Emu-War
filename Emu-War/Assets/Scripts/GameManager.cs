@@ -40,7 +40,7 @@ public class GameManager : MonoBehaviour
             player.isDead = true;
             _player.score = _player.PlayerScore();
             player.score = player.PlayerScore();
-            //_scoreTracker.score = player.score;
+            _scoreTracker.score = player.score;
             SceneManager.LoadScene("GameOver");
         }
 
@@ -50,8 +50,8 @@ public class GameManager : MonoBehaviour
             player.isDead = false;
             _player.score = _player.PlayerScore();
             player.score = player.PlayerScore();
-            Console.WriteLine(player.score);
-            //_scoreTracker.score = player.score;
+            //Debug.Log(player.score);
+            _scoreTracker.score = player.score;
             SceneManager.LoadScene("GameOver");
 
             //player.dTime += Time.deltaTime;
