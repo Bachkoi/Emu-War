@@ -8,10 +8,14 @@ public class AIHunterShooting : MonoBehaviour
     [SerializeField]
     private float _rateOfFire;
     public bool canFire;
+    public Animator anim;
+
 
     private ObjectPooler _objPool;
     private float _counter;
     private bool _fireCycle;
+    [SerializeField]
+    private AIHunterTracking _hunterTracker;
     #region Burst Fire
     private float _burstCounter;
     private float _burstCooldown;
@@ -50,29 +54,39 @@ public class AIHunterShooting : MonoBehaviour
         if (_counter > _rateOfFire)
         {
             _fireCycle = true;
+            anim.SetBool("isWalking", false);
+            anim.SetBool("isShooting", true);
             //If there are still bursts shots left
             if(_burstCounter > 0)
             {
                 //Cooldown for burst
                 if(_burstCooldown <= 0)
                 {
-                    GameObject bullet = _objPool.SpawnFromPool("Bullets", transform.position, transform.rotation);
+                    //GameObject bullet = _objPool.SpawnFromPool("Bullets", transform.position, transform.rotation);
+                    GameObject bullet = _objPool.SpawnFromPool("Bullets", transform.position, _hunterTracker.CurrentRotation);
                     float randomOffset = (float)Random.Range(-10, 10);
                     bullet.transform.rotation *= Quaternion.AngleAxis(randomOffset, Vector3.forward);
                     bullet.SetActive(true);
                     _burstCooldown = 0.3f;
                     _burstCounter--;
+                    //anim.SetBool("isShooting", false);
+
                 }
                 else
                 {
+
                     _burstCooldown-= Time.deltaTime;
+                    //anim.SetBool("isShooting", false);
+
                 }
-                
+
             }
             else
             {
                 _burstCounter = 5;
                 _counter = 0;
+                anim.SetBool("isShooting", false);
+
             }
 
         }
@@ -80,6 +94,8 @@ public class AIHunterShooting : MonoBehaviour
         {
             _counter += Time.deltaTime;
             _fireCycle = false;
+            anim.SetBool("isShooting", false);
+
         }
 
     }

@@ -108,25 +108,50 @@ public class Player : MonoBehaviour
     private void Movement()
     {
         _anim.SetBool("isWalking", false);
+        foreach (GameObject obj in horde)
+        {
+            obj.GetComponent<Animator>().SetBool("isWalking", false); // Set horde anim to be true.
+        }
         if (Input.GetKey(KeyCode.D))
         {
             transform.position += Vector3.right * speed * Time.deltaTime;
             _anim.SetBool("isWalking", true);
+            foreach (GameObject obj in horde)
+            {
+                obj.GetComponent<Animator>().SetBool("isWalking", true); // Set horde anim to be true.
+            }
+
         }
         if (Input.GetKey(KeyCode.A))
         {
             transform.position += Vector3.left * speed * Time.deltaTime;
             _anim.SetBool("isWalking", true);
+            foreach (GameObject obj in horde)
+            {
+                obj.GetComponent<Animator>().SetBool("isWalking", true); // Set horde anim to be true.
+            }
         }
         if (Input.GetKey(KeyCode.W))
         {
             transform.position += Vector3.up * speed * Time.deltaTime;
             _anim.SetBool("isWalking", true);
+            foreach (GameObject obj in horde)
+            {
+                obj.GetComponent<Animator>().SetBool("isWalking", true); // Set horde anim to be true.
+                obj.GetComponent<Animator>().SetBool("isBackwards", true); // Set horde anim to be true.
+
+            }
         }
         if (Input.GetKey(KeyCode.S))
         {
             transform.position += Vector3.up * -speed * Time.deltaTime;
             _anim.SetBool("isWalking", true);
+            foreach (GameObject obj in horde)
+            {
+                obj.GetComponent<Animator>().SetBool("isWalking", true); // Set horde anim to be true.
+                obj.GetComponent<Animator>().SetBool("isBackwards", false); // Set horde anim to be true.
+
+            }
         }
     }
 
@@ -174,6 +199,7 @@ public class Player : MonoBehaviour
         horde.Add(caughtEmu);
         hordeQueue.Enqueue(caughtEmu);
         caughtEmu.GetComponent<Horde>().follow = true;
+        score += 50.0f;
         followRadius += 0.1f;
         HordeReposition();
     }
@@ -421,8 +447,8 @@ public class Player : MonoBehaviour
                     break;
             }
         }
-        score += (50.0f * hordeSize);
-        score += (100.0f * wheat);
+        //score += (50.0f * hordeSize);
+        //score += (100.0f * wheat);
 
         return score;
     }
