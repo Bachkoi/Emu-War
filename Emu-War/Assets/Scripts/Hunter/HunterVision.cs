@@ -5,6 +5,7 @@ using UnityEngine;
 public class HunterVision : MonoBehaviour
 {
     #region Fields
+
     [SerializeField]
     private GameObject _hunterAi;
     private int _emuCountInRange = 0;
@@ -22,6 +23,8 @@ public class HunterVision : MonoBehaviour
     }
     public void Update()
     {
+
+
         if(_emuCountInRange > 0)
         {
             GameObject closestEmu = GetClosestEmu();

@@ -49,11 +49,11 @@ public class Player : MonoBehaviour
         wheat = 0;
         hordeSize = 0;
         _anim = GetComponent<Animator>();
-        _speedBuffCooldown = 5;
+        _speedBuffCooldown = 15;
         _speedBuffTimer = 5;
         _speedBuffReady = false;
         _speedBuffActive = false;
-        _wheatSenseCooldown = 5;
+        _wheatSenseCooldown = 10;
         _wheatSenseTimer = 5;
         _wheatSenseReady = false;
         _wheatSenseActive = false;
@@ -72,7 +72,9 @@ public class Player : MonoBehaviour
         UseAbility();
 
         // Movement
-        FollowMouse();
+        //FollowMouse();
+        Movement();
+
         if (Input.GetMouseButtonDown(0))
         {
             if (hordeSize > 0)
@@ -98,43 +100,58 @@ public class Player : MonoBehaviour
         // Update the UI
         _healthText.text = $"Health: {health}";
         _scoreText.text = $"Score: {score}";
-        _wheatText.text = $"Wheat: {wheat} / 20";
+        _wheatText.text = $"Wheat: {wheat} / 37";
         _hordeSizeText.text = $"x {hordeSize}";
 
     }
 
-    /// <summary>
-    /// Enables the Player object to move by following the mouse.
-    /// </summary>
-    private void FollowMouse()
+    private void Movement()
     {
-        // Get the target position
-        Vector3 targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        targetPos.z = -1;
-
-        // Check if the mouse is inside the player
-        bool mouseInsidePlayer = GetComponent<CircleCollider2D>().bounds.Contains(targetPos);
-
-
-        // If it isn't, move the player
-        if (!mouseInsidePlayer)
+        _anim.SetBool("isWalking", false);
+        foreach (GameObject obj in horde)
         {
-            foreach(GameObject obj in horde)
+            obj.GetComponent<Animator>().SetBool("isWalking", false); // Set horde anim to be true.
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            transform.position += Vector3.right * speed * Time.deltaTime;
+            _anim.SetBool("isWalking", true);
+            foreach (GameObject obj in horde)
             {
                 obj.GetComponent<Animator>().SetBool("isWalking", true); // Set horde anim to be true.
             }
-            _anim.SetBool("isWalking", true);
 
-            // Transform the Player object toward the target position
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
         }
-        else
+        if (Input.GetKey(KeyCode.A))
         {
+            transform.position += Vector3.left * speed * Time.deltaTime;
+            _anim.SetBool("isWalking", true);
             foreach (GameObject obj in horde)
             {
-                obj.GetComponent<Animator>().SetBool("isWalking", false); // Set the horde anim to be false. COMMENTED UNTIL WE HAVE THE ANIMATIONS WORKING
+                obj.GetComponent<Animator>().SetBool("isWalking", true); // Set horde anim to be true.
             }
-            _anim.SetBool("isWalking", false);
+        }
+        if (Input.GetKey(KeyCode.W))
+        {
+            transform.position += Vector3.up * speed * Time.deltaTime;
+            _anim.SetBool("isWalking", true);
+            foreach (GameObject obj in horde)
+            {
+                obj.GetComponent<Animator>().SetBool("isWalking", true); // Set horde anim to be true.
+                obj.GetComponent<Animator>().SetBool("isBackwards", true); // Set horde anim to be true.
+
+            }
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            transform.position += Vector3.up * -speed * Time.deltaTime;
+            _anim.SetBool("isWalking", true);
+            foreach (GameObject obj in horde)
+            {
+                obj.GetComponent<Animator>().SetBool("isWalking", true); // Set horde anim to be true.
+                obj.GetComponent<Animator>().SetBool("isBackwards", false); // Set horde anim to be true.
+
+            }
         }
     }
 
@@ -147,6 +164,7 @@ public class Player : MonoBehaviour
         horde.Add(caughtEmu);
         hordeQueue.Enqueue(caughtEmu);
         caughtEmu.GetComponent<Horde>().follow = true;
+        score += 50.0f;
         followRadius += 0.1f;
         HordeReposition();
     }
@@ -218,7 +236,7 @@ public class Player : MonoBehaviour
             // Reduce the time from the cooldown
             _speedBuffCooldown -= Time.deltaTime;
 
-            _speedAbilityProgress.fillAmount = 1 - (_speedBuffCooldown / 5);
+            _speedAbilityProgress.fillAmount = 1 - (_speedBuffCooldown / 15);
         }
         // If the buff is not on cooldown and not in use
         else if (_speedBuffCooldown <= 0 && !_speedBuffActive)
@@ -242,7 +260,7 @@ public class Player : MonoBehaviour
                 speed = 5;
 
                 // Reset the timers
-                _speedBuffCooldown = 5;
+                _speedBuffCooldown = 15;
                 _speedBuffTimer = 5;
 
                 // Set the buff's active state
@@ -260,7 +278,7 @@ public class Player : MonoBehaviour
         {
             // Reduce the time from the cooldown
             _wheatSenseCooldown -= Time.deltaTime;
-            _wheatAbilityProgress.fillAmount = 1 - (_wheatSenseCooldown / 5);
+            _wheatAbilityProgress.fillAmount = 1 - (_wheatSenseCooldown / 10);
         }
         // If the buff is not on cooldown and not in use
         else if (_wheatSenseCooldown <= 0 && !_wheatSenseActive)
@@ -287,7 +305,7 @@ public class Player : MonoBehaviour
                 _wheatDetector.enabled = false;
 
                 // Reset the timers
-                _wheatSenseCooldown = 5;
+                _wheatSenseCooldown = 10;
                 _wheatSenseTimer = 5;
 
                 // Set the buff's active state
@@ -394,8 +412,8 @@ public class Player : MonoBehaviour
                     break;
             }
         }
-        score += (50.0f * hordeSize);
-        score += (100.0f * wheat);
+        //score += (50.0f * hordeSize);
+        //score += (100.0f * wheat);
 
         return score;
     }

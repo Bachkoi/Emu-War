@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         // TODO: Create LevelManager to handle wheat in the level/win conditions
-        _amountOfWheat = 20; // temporary assignment for CollisionTest scene
+        _amountOfWheat = 37; // temporary assignment for CollisionTest scene
 
         _player = _playerObject.GetComponent<Player>();
         player = playerObject.GetComponent<Player>();
@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
             player.isDead = false;
             _player.score = _player.PlayerScore();
             player.score = player.PlayerScore();
-            Console.WriteLine(player.score);
+            //Debug.Log(player.score);
             _scoreTracker.score = player.score;
             SceneManager.LoadScene("GameOver");
 

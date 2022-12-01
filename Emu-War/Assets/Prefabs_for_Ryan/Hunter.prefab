@@ -163,6 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hunterAi: {fileID: 5178120510157864178}
+  _emusInSight: []
 --- !u!1 &5178120510157864178
 GameObject:
   m_ObjectHideFlags: 0
@@ -335,6 +336,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rateOfFire: 1
   canFire: 0
+  _hunterTracker: {fileID: 5178120510157864191}
 --- !u!1 &5705383306063991352
 GameObject:
   m_ObjectHideFlags: 0
