@@ -54,12 +54,17 @@ public class Horde : MonoBehaviour
                     this.gameObject.transform.position = Vector2.MoveTowards(this.gameObject.transform.position, tempPos, _speed * Time.deltaTime);
                 }
             }
-            if (isDead == true)
+            if (isDead == true && follow == true)
             {
                 player.HordeDeath(this.gameObject);
             }
+            if (isDead == true && follow == false)
+            {
+                Destroy(gameObject);
+            }
             if(isThrown == true)
             {
+                follow = false;
                 this.gameObject.transform.position = Vector3.MoveTowards(this.gameObject.transform.position, throwPos, _speed * Time.deltaTime);
                 wallPos = this.gameObject.transform.position;
                 if(this.gameObject.transform.position == throwPos)

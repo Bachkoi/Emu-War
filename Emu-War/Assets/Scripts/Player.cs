@@ -100,7 +100,7 @@ public class Player : MonoBehaviour
         // Update the UI
         _healthText.text = $"Health: {health}";
         _scoreText.text = $"Score: {score}";
-        _wheatText.text = $"Wheat: {wheat} / 20";
+        _wheatText.text = $"Wheat: {wheat} / 37";
         _hordeSizeText.text = $"x {hordeSize}";
 
     }
@@ -152,41 +152,6 @@ public class Player : MonoBehaviour
                 obj.GetComponent<Animator>().SetBool("isBackwards", false); // Set horde anim to be true.
 
             }
-        }
-    }
-
-    /// <summary>
-    /// Enables the Player object to move by following the mouse.
-    /// </summary>
-    private void FollowMouse()
-    {
-        // Get the target position
-        Vector3 targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        targetPos.z = -1;
-
-        // Check if the mouse is inside the player
-        bool mouseInsidePlayer = GetComponent<CircleCollider2D>().bounds.Contains(targetPos);
-
-
-        // If it isn't, move the player
-        if (!mouseInsidePlayer)
-        {
-            foreach(GameObject obj in horde)
-            {
-                obj.GetComponent<Animator>().SetBool("isWalking", true); // Set horde anim to be true.
-            }
-            _anim.SetBool("isWalking", true);
-
-            // Transform the Player object toward the target position
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, speed * Time.deltaTime);
-        }
-        else
-        {
-            foreach (GameObject obj in horde)
-            {
-                obj.GetComponent<Animator>().SetBool("isWalking", false); // Set the horde anim to be false. COMMENTED UNTIL WE HAVE THE ANIMATIONS WORKING
-            }
-            _anim.SetBool("isWalking", false);
         }
     }
 
